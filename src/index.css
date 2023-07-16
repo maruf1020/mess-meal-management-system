@@ -21,10 +21,12 @@ body {
 
 main {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 60% 40%;
   grid-template-rows: repeat(3, 1fr) auto;
   grid-gap: 10px;
-  /* Optional: Add gap between grid items */
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 main>*:first-child {
@@ -43,4 +45,15 @@ main>*:nth-last-child(2) {
 main>*:last-child {
   grid-column: 1 / span 2;
   grid-row: 5;
+}
+
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }

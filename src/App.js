@@ -89,19 +89,24 @@ export default function App() {
         </div>
         <div className="assign-mills">
           <h3>Assign Mills</h3>
+          <button className="button">Today</button>
+          <div className="month-year">
+            <button className="button">&#10094;</button>
+            <span>05</span>
+            <button className="button">&#10095;</button>
+          </div>
           <table>
             <thead>
               <tr>
                 <th>Time</th>
-                <th>Maruf</th>
-                <th>Siam</th>
-                <th>Miraj</th>
-                <th>Saif</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Breakfast</td>
+                <td>Maruf</td>
                 <td>
                   <input type="checkbox" checked />
                 </td>
@@ -111,15 +116,10 @@ export default function App() {
                 <td>
                   <input type="checkbox" />
                 </td>
-                <td>
-                  <input type="checkbox" />
-                </td>
+
               </tr>
               <tr>
-                <td>Lunch</td>
-                <td>
-                  <input type="checkbox" checked />
-                </td>
+                <td>Miraz</td>
                 <td>
                   <input type="checkbox" checked />
                 </td>
@@ -131,7 +131,7 @@ export default function App() {
                 </td>
               </tr>
               <tr>
-                <td>Dinner</td>
+                <td>Siam</td>
                 <td>
                   <input type="checkbox" />
                 </td>
@@ -140,9 +140,6 @@ export default function App() {
                 </td>
                 <td>
                   <input type="checkbox" />
-                </td>
-                <td>
-                  <input type="checkbox" checked />
                 </td>
               </tr>
             </tbody>

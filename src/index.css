@@ -1,13 +1,46 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.maateen.me/charukola-ultra-light/font.css");
+
+:root {
+  --dark-primary-color: #2f9e44;
+  --light-primary-color: #d3f9d8;
+  --primary-color: #69db7c;
+  --text-color: #FFFFFF;
+  --accent-color: #FFC107;
+  --primary-text-color: #212121;
+  --secondary-text-color: #757575;
+  --divider-color: #BDBDBD;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* https://www.materialpalette.com/grey/grey
+https://yeun.github.io/open-color/ */
+
+body {
+  font-family: "CharukolaUltraLight", sans-serif;
+  box-sizing: border-box;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(3, 1fr) auto;
+  grid-gap: 10px;
+  /* Optional: Add gap between grid items */
+}
+
+main>*:first-child {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+}
+
+main>*:not(:first-child):not(:last-child) {
+  grid-column: 2;
+}
+
+main>*:nth-last-child(2) {
+  grid-row: 4;
+}
+
+main>*:last-child {
+  grid-column: 1 / span 2;
+  grid-row: 5;
 }

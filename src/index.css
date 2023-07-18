@@ -1,5 +1,5 @@
 /* @import url("https://fonts.maateen.me/charukola-ultra-light/font.css"); */
-@import url('https://fonts.cdnfonts.com/css/boring-days');
+/* @import url('https://fonts.cdnfonts.com/css/boring-days'); */
 @import url('https://fonts.cdnfonts.com/css/street-college');
 
 :root {
@@ -55,21 +55,23 @@ main {
 }
 
 main>*:first-child {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+
+
+main>*:nth-child(2) {
   grid-column: 1;
-  grid-row: 1 / span 4;
+  grid-row: 2 / span 4;
 }
 
-main>*:not(:first-child):not(:last-child) {
+main>*:not(:first-child):not(:last-child):not(:nth-child(2)) {
   grid-column: 2;
-}
-
-main>*:nth-last-child(2) {
-  grid-row: 4;
 }
 
 main>*:last-child {
   grid-column: 1 / span 2;
-  grid-row: 5;
+  grid-row: 6;
 }
 
 .box {
@@ -78,18 +80,34 @@ main>*:last-child {
   border-radius: 5px;
 }
 
-.Short-summary {
-  background: var(--light-primary-color2);
-  padding: 1.2rem;
+.label-container {
   display: flex;
-  flex-direction: column;
+  gap: 2rem;
 }
 
 .assign-mills {
   border: 1px solid var(--primary-color);
 }
 
-.Short-summary>div {
+.add-guest-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.add-guest-wrapper>* {
+  flex: 1;
+}
+
+.short-summary {
+  background: var(--light-primary-color2);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.short-summary>div {
   padding: .5rem 1rem;
   display: flex;
   justify-content: space-between;
@@ -97,7 +115,7 @@ main>*:last-child {
   margin-bottom: 0.5rem;
 }
 
-.Short-summary span {
+.short-summary span {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 400;
@@ -141,6 +159,10 @@ button {
   font-size: 1rem;
   font-weight: 400;
   transition: all 0.3s ease;
+}
+
+.add-guest-button {
+  margin: 1rem 0;
 }
 
 input {

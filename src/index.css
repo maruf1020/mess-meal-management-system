@@ -1,8 +1,11 @@
-@import url("https://fonts.maateen.me/charukola-ultra-light/font.css");
+/* @import url("https://fonts.maateen.me/charukola-ultra-light/font.css"); */
+@import url('https://fonts.cdnfonts.com/css/boring-days');
+@import url('https://fonts.cdnfonts.com/css/street-college');
 
 :root {
   --dark-primary-color: #2f9e44;
   --light-primary-color: #d3f9d8;
+  --light-primary-color2: #e9fceb;
   --primary-color: #69db7c;
   --text-color: #FFFFFF;
   --accent-color: #FFC107;
@@ -15,23 +18,45 @@
 https://yeun.github.io/open-color/ */
 
 body {
-  font-family: "CharukolaUltraLight", sans-serif;
+  /* font-family: "CharukolaUltraLight", sans-serif; */
+  font-family: 'Boring Days', sans-serif;
   box-sizing: border-box;
+}
+
+.App {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  gap: 50px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: 'Street College', sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0;
+  color: var(--dark-primary-color);
+  text-align: center;
+  padding: 1rem 0;
+  background: var(--light-primary-color2);
 }
 
 main {
   display: grid;
   grid-template-columns: 60% 40%;
-  grid-template-rows: repeat(3, 1fr) auto;
+  grid-template-rows: repeat(3, auto) auto;
   grid-gap: 10px;
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
+  gap: 50px;
+  box-sizing: border-box;
 }
 
 main>*:first-child {
   grid-column: 1;
-  grid-row: 1 / span 3;
+  grid-row: 1 / span 4;
 }
 
 main>*:not(:first-child):not(:last-child) {
@@ -47,13 +72,182 @@ main>*:last-child {
   grid-row: 5;
 }
 
-table {
-  width: 100%;
+.box {
+  background: var(--light-primary-color2);
+  padding: 1rem;
+  border-radius: 5px;
 }
 
-table,
+.Short-summary {
+  background: var(--light-primary-color2);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.assign-mills {
+  border: 1px solid var(--primary-color);
+}
+
+.Short-summary>div {
+  padding: .5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.Short-summary span {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--primary-text-color);
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0;
+  color: var(--primary-text-color);
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  color: var(--text-color);
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.picker {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  color: var(--text-color);
+  gap: 1rem;
+}
+
+button {
+  font-family: 'Boring Days', sans-serif;
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+input {
+  font-family: 'Boring Days', sans-serif;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--divider-color);
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  background: var(--light-primary-color);
+}
+
+select {
+  font-family: 'Boring Days', sans-serif;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--divider-color);
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  background: var(--light-primary-color);
+}
+
+option {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--light-primary-color2);
+  margin: 0;
+
+  font: inherit;
+  color: var(--dark-primary-color);
+  width: 20px;
+  min-height: 20px;
+  border: 0.15em solid var(--dark-primary-color);
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--dark-primary-color);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:disabled {
+  --dark-primary-color: var(--divider-color);
+  color: var(--divider-color);
+  cursor: not-allowed;
+}
+
+/* https://moderncss.dev/pure-css-custom-checkbox-style/ */
+
+table {
+  width: 100%;
+  background: var(--light-primary-color);
+  border-collapse: collapse;
+}
+
 th,
 td {
-  border: 1px solid black;
-  border-collapse: collapse;
+  padding: 1rem;
+  text-align: left;
+  line-height: 1.5;
+  color: var(--primary-text-color);
+  font-size: 1.2rem;
+}
+
+th {
+  font-weight: 700;
+}
+
+tr:nth-of-type(2n) {
+  background: var(--light-primary-color2);
+}
+
+td:first-child {
+  font-weight: 700;
+}
+
+footer {
+  background: var(--light-primary-color2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }

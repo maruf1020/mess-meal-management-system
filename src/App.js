@@ -5,26 +5,27 @@ export default function App() {
         <h1>Meal Management System</h1>
       </header>
       <main>
-        <div className="mill-calender">
+        <div className="mill-calender box">
           <h3>Mill Calender</h3>
           <div className="navigation">
             <button className="button">This Month</button>
-            <div className="month-year">
+            <div className="month-year picker">
               <button className="button">&#10094;</button>
-              <span>January 2023</span>
+              <input type="month" />
               <button className="button">&#10095;</button>
-              <select>
-                <option value="all">All Members</option>
-                <option value="maruf">Maruf</option>
-                <option value="siam">Siam</option>
-                <option value="miraj">Miraj</option>
-                <option value="saif">Saif</option>
-              </select>
             </div>
+            <select>
+              <option value="all">All Members</option>
+              <option value="maruf">Maruf</option>
+              <option value="siam">Siam</option>
+              <option value="miraj">Miraj</option>
+              <option value="saif">Saif</option>
+            </select>
           </div>
           <h4>Displayed by All Members</h4>
           <table>
-            <thead>
+
+            <tbody>
               <tr>
                 <th>Date</th>
                 <th>Maruf</th>
@@ -32,8 +33,6 @@ export default function App() {
                 <th>Miraj</th>
                 <th>Saif</th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td>1</td>
                 <td>2</td>
@@ -51,15 +50,13 @@ export default function App() {
             </tbody>
           </table>
           <table>
-            <thead>
+            <tbody>
               <tr>
                 <th>Date</th>
                 <th>Breakfast</th>
                 <th>Lunch</th>
                 <th>Dinner</th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td>1</td>
                 <td>
@@ -87,24 +84,24 @@ export default function App() {
             </tbody>
           </table>
         </div>
-        <div className="assign-mills">
+        <div className="assign-mills box">
           <h3>Assign Mills</h3>
-          <button className="button">Today</button>
-          <div className="month-year">
-            <button className="button">&#10094;</button>
-            <span>05</span>
-            <button className="button">&#10095;</button>
+          <div className="navigation">
+            <button className="button">Today</button>
+            <div className="date-month-year picker">
+              <button className="button">&#10094;</button>
+              <input type="date" />
+              <button className="button">&#10095;</button>
+            </div>
           </div>
           <table>
-            <thead>
+            <tbody>
               <tr>
                 <th>Time</th>
                 <th>Breakfast</th>
                 <th>Lunch</th>
                 <th>Dinner</th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td>Maruf</td>
                 <td>
@@ -145,7 +142,7 @@ export default function App() {
             </tbody>
           </table>
         </div>
-        <div className="Short-summary">
+        <div className="Short-summary box">
           <h3>Short Summary</h3>
           <div className="total-market">
             <span>Total Market: </span>
@@ -168,17 +165,15 @@ export default function App() {
             <span>1000</span>
           </div>
         </div>
-        <div className="marketing-history">
+        <div className="marketing-history box">
           <h3>Marketing History</h3>
           <table>
-            <thead>
+            <tbody>
               <tr>
                 <th>Name</th>
                 <th>Bazar</th>
                 <th>Money</th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td>Maruf</td>
                 <td>5</td>
@@ -197,16 +192,14 @@ export default function App() {
             </tbody>
           </table>
         </div>
-        <div className="money-store">
+        <div className="money-store box">
           <h3>Money Store</h3>
           <table>
-            <thead>
+            <tbody>
               <tr>
                 <th>Name</th>
                 <th>Money</th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td>Maruf</td>
                 <td>2500</td>
@@ -222,10 +215,10 @@ export default function App() {
             </tbody>
           </table>
         </div>
-        <div className="final-summary">
+        <div className="final-summary box">
           <h3>Final Summary</h3>
           <table>
-            <thead>
+            <tbody>
               <tr>
                 <th>Name</th>
                 <th>Marketing</th>
@@ -233,8 +226,6 @@ export default function App() {
                 <th>Meal</th>
                 <th>Money</th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td>Maruf</td>
                 <td>2500</td>

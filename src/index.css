@@ -1,6 +1,7 @@
-/* @import url("https://fonts.maateen.me/charukola-ultra-light/font.css"); */
-/* @import url('https://fonts.cdnfonts.com/css/boring-days'); */
 @import url('https://fonts.cdnfonts.com/css/street-college');
+
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap');
+
 
 :root {
   --dark-primary-color: #2f9e44;
@@ -18,9 +19,15 @@
 https://yeun.github.io/open-color/ */
 
 body {
-  /* font-family: "CharukolaUltraLight", sans-serif; */
-  font-family: 'Boring Days', sans-serif;
+  font-family: "CharukolaUltraLight", sans-serif;
   box-sizing: border-box;
+}
+
+body,
+button,
+select,
+input {
+  font-family: 'Gaegu', cursive;
 }
 
 .App {
@@ -149,7 +156,6 @@ h3 {
 }
 
 button {
-  font-family: 'Boring Days', sans-serif;
   background: var(--primary-color);
   color: var(--text-color);
   border: none;
@@ -166,7 +172,6 @@ button {
 }
 
 input {
-  font-family: 'Boring Days', sans-serif;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: 1px solid var(--divider-color);
@@ -177,7 +182,6 @@ input {
 }
 
 select {
-  font-family: 'Boring Days', sans-serif;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: 1px solid var(--divider-color);

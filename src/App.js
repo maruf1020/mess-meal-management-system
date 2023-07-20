@@ -700,26 +700,30 @@ function ShortSummary() {
   return (
     <div className="short-summary box">
       <h3>Short Summary</h3>
-      <div className="total-market">
-        <span>Total Market: </span>
-        <span>1000</span>
-      </div>
-      <div className="total-money">
-        <span>Total Money: </span>
-        <span>1000</span>
-      </div>
-      <div className="total-meal">
-        <span>Total Meal: </span>
-        <span>1000</span>
-      </div>
-      <div className="meal-rate">
-        <span>Meal Rate: </span>
-        <span>1000</span>
-      </div>
-      <div className="money-left">
-        <span>Money Left: </span>
-        <span>1000</span>
-      </div>
+      <table>
+        <tbody>
+          <tr>
+            <td>Total Market</td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td>Total Money</td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td>Total Meal</td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td>Meal Rate</td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td>Money Left</td>
+            <td>1000</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   )
 }

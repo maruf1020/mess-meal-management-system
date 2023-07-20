@@ -1,34 +1,131 @@
 @import url('https://fonts.cdnfonts.com/css/street-college');
 
-@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
 
 
 :root {
-  --dark-primary-color: #2f9e44;
-  --light-primary-color: #d3f9d8;
-  --light-primary-color2: #e9fceb;
-  --primary-color: #69db7c;
-  --text-color: #FFFFFF;
-  --accent-color: #FFC107;
-  --primary-text-color: #212121;
-  --secondary-text-color: #757575;
-  --divider-color: #BDBDBD;
+  --v-white-base: #ffffff;
+  --v-black-base: #000000;
+
+  --v-anchor-base: #ff7922;
+  --v-primary-base: #ff7922;
+  --v-primary-lighten1: #ff9c5b;
+  --v-primary-lighten2: #ffbc90;
+  --v-primary-lighten3: #ffddc8;
+  --v-primary-lighten4: #fff2e9;
+  --v-primary-darken1: #ffb122;
+  --v-secondary-base: #424b63;
+  --v-secondary-lighten1: #71788a;
+  --v-secondary-lighten2: #a0a5b1;
+  --v-secondary-lighten3: #d0d2d8;
+  --v-secondary-lighten4: #ecedef;
+  --v-secondary-lighten5: #f6f8fb;
+  --v-accent-base: #82b1ff;
+  --v-accent-lighten5: #ffffff;
+  --v-accent-lighten4: #f8ffff;
+  --v-accent-lighten3: #daffff;
+  --v-accent-lighten2: #bce8ff;
+  --v-accent-lighten1: #9fccff;
+  --v-accent-darken1: #6596e2;
+  --v-accent-darken2: #467dc6;
+  --v-accent-darken3: #2364aa;
+  --v-accent-darken4: #004c90;
+  --v-error-base: #d34f74;
+  --v-error-lighten5: #ffdbfb;
+  --v-error-lighten4: #ffbfdf;
+  --v-error-lighten3: #ffa2c3;
+  --v-error-lighten2: #ff86a8;
+  --v-error-lighten1: #f16b8d;
+  --v-error-darken1: #b5325c;
+  --v-error-darken2: #980e44;
+  --v-error-darken3: #7b002e;
+  --v-error-darken4: #5e001a;
+  --v-info-base: #2196f3;
+  --v-info-lighten5: #d4ffff;
+  --v-info-lighten4: #b5ffff;
+  --v-info-lighten3: #95e8ff;
+  --v-info-lighten2: #75ccff;
+  --v-info-lighten1: #51b0ff;
+  --v-info-darken1: #007cd6;
+  --v-info-darken2: #0064ba;
+  --v-info-darken3: #004d9f;
+  --v-info-darken4: #003784;
+  --v-success-base: #69c050;
+  --v-success-lighten5: #f9ffd8;
+  --v-success-lighten4: #dbffbb;
+  --v-success-lighten3: #beffa0;
+  --v-success-lighten2: #a2f985;
+  --v-success-lighten1: #85dc6a;
+  --v-success-darken1: #4da436;
+  --v-success-darken2: #2e8a1a;
+  --v-success-darken3: #017000;
+  --v-success-darken4: #005600;
+  --v-warning-base: #ffbc90;
+  --v-warning-lighten5: #ffffff;
+  --v-warning-lighten4: #ffffff;
+  --v-warning-lighten3: #ffffe2;
+  --v-warning-lighten2: #fff4c6;
+  --v-warning-lighten1: #ffd8ab;
+  --v-warning-darken1: #e1a176;
+  --v-warning-darken2: #c4875d;
+  --v-warning-darken3: #a76d45;
+  --v-warning-darken4: #8b552e;
+  --v-grey-base: #f2f2f2;
+  --v-grey-lighten1: #808080;
+  --v-grey-lighten2: #999999;
+  --v-grey-lighten3: #b2b2b2;
+  --v-grey-lighten4: #cccccc;
+  --v-grey-lighten5: #e6e6e6;
+  --v-grey-darken1: #666666;
+  --v-grey-darken2: #4d4d4d;
+  --v-grey-darken3: #333333;
+  --v-grey-darken4: #1a1a1a;
+  --v-grey-darken5: #000000;
+  --v-blue-grey-base: undefined;
+  --v-blue-grey-lighten5: #fafafa;
+  --v-danger-base: #c41446;
+  --v-danger-lighten1: #f9e7ec;
+  --v-danger-lighten4: #f9e7ec;
+  --v-pricing-plan-premium-base: #0041be;
+  --v-pricing-plan-premium-lighten5: #e2ecff;
+  --v-pricing-plan-ultimate-base: #56007e;
+  --v-pricing-plan-ultimate-lighten5: #f6e2ff;
+  --v-signal-warning-base: #fff7e9;
+  --v-signal-warning-lighten5: #ffffff;
+  --v-signal-warning-lighten4: #ffffff;
+  --v-signal-warning-lighten3: #ffffff;
+  --v-signal-warning-lighten2: #ffffff;
+  --v-signal-warning-lighten1: #ffffff;
+  --v-signal-warning-darken1: #e2dbcd;
+  --v-signal-warning-darken2: #c6bfb1;
+  --v-signal-warning-darken3: #aba497;
+  --v-signal-warning-darken4: #90897d;
+  --v-default-activity-base: #808080;
+  --v-default-activity-lighten5: #ffffff;
+  --v-default-activity-lighten4: #ededed;
+  --v-default-activity-lighten3: #d0d0d0;
+  --v-default-activity-lighten2: #b5b5b5;
+  --v-default-activity-lighten1: #9a9a9a;
+  --v-default-activity-darken1: #676767;
+  --v-default-activity-darken2: #4f4f4f;
+  --v-default-activity-darken3: #383838;
+  --v-default-activity-darken4: #232323;
 }
 
 /* https://www.materialpalette.com/grey/grey
 https://yeun.github.io/open-color/ */
 
-body {
-  font-family: "CharukolaUltraLight", sans-serif;
+* {
+  font-family: Nunito Sans, sans-serif;
   box-sizing: border-box;
 }
 
-body,
+/* body,
 button,
 select,
 input {
   font-family: 'Gaegu', cursive;
-}
+} */
 
 .App {
   display: grid;
@@ -36,6 +133,7 @@ input {
   min-height: 100vh;
   gap: 50px;
   box-sizing: border-box;
+  background-color: var(--v-secondary-lighten5);
 }
 
 h1 {
@@ -43,19 +141,19 @@ h1 {
   font-size: 4rem;
   font-weight: 400;
   margin: 0;
-  color: var(--dark-primary-color);
+  /* color: var(--dark-primary-color); */
   text-align: center;
   padding: 1rem 0;
-  background: var(--light-primary-color2);
+  /* background: var(--light-primary-color2); */
 }
 
 main {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: minmax(0, 60%) minmax(0, 40%);
   grid-template-rows: repeat(3, auto) auto;
   grid-gap: 10px;
-  width: 90%;
-  max-width: 1400px;
+  width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
   gap: 50px;
   box-sizing: border-box;
@@ -82,19 +180,57 @@ main>*:last-child {
 }
 
 .box {
-  background: var(--light-primary-color2);
-  padding: 1rem;
+  background: var(--v-white-base);
+  padding: 16px 24px;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1);
+}
+
+.assign-mills table td:not(:first-child) input,
+.meal-calender table td:not(:first-child) input {
+  margin: 0 auto
 }
 
 .label-container {
   display: flex;
   gap: 2rem;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, .2), 0 0 0 0 rgba(0, 0, 0, .14), 0 0 0 0 rgba(0, 0, 0, .12);
+  border-bottom: 1px solid #e6e6e6;
+
 }
 
-.assign-mills {
-  border: 1px solid var(--primary-color);
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--v-secondary-lighten5);
+  border: 1px solid var(--v-secondary-lighten4);
+  overflow: hidden;
+  border-radius: 5px;
 }
+
+th,
+td {
+  padding: 1.2rem;
+  text-align: center;
+  color: var(--primary-text-color);
+  line-height: 1.5;
+  font-size: .875rem;
+  font-weight: 400;
+}
+
+th,
+td:first-child {
+  font-weight: 700;
+}
+
+tr:hover:not(:first-child),
+.short-summary tr:hover {
+  background: var(--v-white-base);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+}
+
+
+
 
 .add-guest-wrapper {
   display: flex;
@@ -107,34 +243,22 @@ main>*:last-child {
   flex: 1;
 }
 
-.short-summary {
-  background: var(--light-primary-color2);
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.short-summary>div {
-  padding: .5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.short-summary span {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: var(--primary-text-color);
-}
 
 h3 {
-  font-size: 2rem;
-  font-weight: 400;
+  font-weight: 700;
+  font-size: 20px;
   margin: 0;
-  color: var(--primary-text-color);
-  text-align: center;
+  color: var(--v-black-base);
+  text-align: left;
+  padding: 1rem 0;
+}
+
+h4 {
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0;
+  color: var(--v-default-activity-darken2);
+  text-align: left;
   padding: 1rem 0;
 }
 
@@ -142,29 +266,54 @@ h3 {
   display: flex;
   align-items: center;
   padding: 1rem 0;
-  color: var(--text-color);
+  /* color: var(--text-color); */
   gap: 1rem;
   justify-content: space-between;
+}
+
+.assign-mills .navigation {
+  padding: 1rem 0 1.5rem 0;
 }
 
 .picker {
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  color: var(--text-color);
+  /* color: var(--text-color); */
   gap: 1rem;
 }
 
 button {
-  background: var(--primary-color);
-  color: var(--text-color);
-  border: none;
-  padding: 0.5rem 1rem;
+  align-items: center;
   border-radius: 5px;
+  outline: 0;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  background-color: var(--v-white-base);
+  border-color: var(--v-primary-base);
+  height: 40px;
+  padding: 0 21.3333333333px;
+  letter-spacing: 0;
+  font-weight: 700;
+  line-height: 1.25rem;
+  box-shadow: none;
+  text-transform: none;
+  border: 1px solid;
+  box-shadow: inset;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 400;
-  transition: all 0.3s ease;
+  color: var(--v-primary-base);
+  font-size: .875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  transition: background-color 0.3s ease;
+
+}
+
+button:hover {
+  background-color: var(--v-primary-base);
+  border-color: var(--v-primary-base);
+  color: var(--v-white-base);
 }
 
 .add-guest-button {
@@ -174,25 +323,24 @@ button {
 input {
   padding: 0.5rem 1rem;
   border-radius: 5px;
-  border: 1px solid var(--divider-color);
+  border: 1px solid var(--v-grey-lighten5);
   font-size: 1rem;
   font-weight: 400;
   transition: all 0.3s ease;
-  background: var(--light-primary-color);
 }
 
 select {
   padding: 0.5rem 1rem;
   border-radius: 5px;
-  border: 1px solid var(--divider-color);
+  border: 1px solid var(--v-grey-lighten5);
   font-size: 1rem;
   font-weight: 400;
   transition: all 0.3s ease;
-  background: var(--light-primary-color);
+  /* background: var(--light-primary-color); */
 }
 
 option {
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
   font-size: 1rem;
   font-weight: 400;
   transition: all 0.3s ease;
@@ -200,19 +348,19 @@ option {
 
 
 input[type="checkbox"] {
+  border: 2px solid var(--v-grey-lighten5);
   -webkit-appearance: none;
   appearance: none;
-  background-color: var(--light-primary-color2);
   margin: 0;
-
   font: inherit;
-  color: var(--dark-primary-color);
-  width: 20px;
-  min-height: 20px;
-  border: 0.15em solid var(--dark-primary-color);
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
+  max-width: 35px;
+  max-height: 35px;
   border-radius: 0.15em;
   transform: translateY(-0.075em);
-
   display: grid;
   place-content: center;
 }
@@ -225,7 +373,7 @@ input[type="checkbox"]::before {
   transform: scale(0);
   transform-origin: bottom left;
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--dark-primary-color);
+  /* box-shadow: inset 1em 1em var(--dark-primary-color); */
   /* Windows High Contrast Mode */
   background-color: CanvasText;
 }
@@ -235,14 +383,14 @@ input[type="checkbox"]:checked::before {
 }
 
 input[type="checkbox"]:disabled {
-  --dark-primary-color: var(--divider-color);
-  color: var(--divider-color);
+  /* --dark-primary-color: var(--divider-color); */
+  /* color: var(--divider-color); */
   cursor: not-allowed;
 }
 
 /* https://moderncss.dev/pure-css-custom-checkbox-style/ */
 
-table {
+/* table {
   width: 100%;
   background: var(--light-primary-color);
   border-collapse: collapse;
@@ -267,13 +415,19 @@ tr:nth-of-type(2n) {
 
 td:first-child {
   font-weight: 700;
-}
+} */
 
 footer {
-  background: var(--light-primary-color2);
-
+  background: var(--v-primary-base);
+  color: var(--v-white-base);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+footer a {
+  color: var(--v-white-base);
+  text-decoration: none;
+  font-weight: 700;
 }

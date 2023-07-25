@@ -196,7 +196,25 @@ main>*:last-child {
   gap: 2rem;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, .2), 0 0 0 0 rgba(0, 0, 0, .14), 0 0 0 0 rgba(0, 0, 0, .12);
   border-bottom: 1px solid #e6e6e6;
+  background: var(--v-primary-base);
+}
 
+.label-container button {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  padding: unset;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--v-white-base);
+  background: unset;
+  transition: all 0.3s ease;
+}
+
+.label-container button:hover {
+  color: var(--v-primary-lighten3);
+  text-decoration: underline;
 }
 
 table {
@@ -212,7 +230,7 @@ th,
 td {
   padding: 1.2rem;
   text-align: center;
-  color: var(--primary-text-color);
+  color: var(--v-secondary-base);
   line-height: 1.5;
   font-size: .875rem;
   font-weight: 400;
@@ -248,7 +266,7 @@ h3 {
   font-weight: 700;
   font-size: 20px;
   margin: 0;
-  color: var(--v-black-base);
+  color: var(--v-secondary-base);
   text-align: left;
   padding: 1rem 0;
 }
@@ -401,7 +419,7 @@ td {
   padding: 1rem;
   text-align: left;
   line-height: 1.5;
-  color: var(--primary-text-color);
+  color: var(--v-secondary-base);
   font-size: 1.2rem;
 }
 

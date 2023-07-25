@@ -613,14 +613,7 @@ function MealAssign() {
   return (
     <div className="assign-mills box">
       <h3>Assign Meals</h3>
-      <div className="navigation">
-        <button className="button">Today</button>
-        <div className="date-month-year picker">
-          <button className="button">&#10094;</button>
-          <input type="date" />
-          <button className="button">&#10095;</button>
-        </div>
-      </div>
+      <DateNavigation />
       <table>
         <tbody>
           <tr>
@@ -832,42 +825,51 @@ function FinalSummary() {
   )
 }
 
-function MonthNavigation() {
-  const [calenderMonth, setCalenderDate] = useState(new Date().toISOString().slice(0, 7))
+
+// Month Navigation
+function MonthNavigation({ onMonthChange }) {
+  const [calenderMonth, setCalenderDate] = useState(new Date().toISOString().slice(0, 7));
+  const [membersInMonth, setMembersInMonth] = useState([101, 102, 103, 104]);
+
+  function _setCalenderDate(date) {
+    setCalenderDate(date)
+    // onMonthChange(date)
+  }
 
   function handleMonthIncrease() {
-    setCalenderDate(curr => {
+    _setCalenderDate(curr => {
       const [year, month] = curr.split('-')
       const newMonth = parseInt(month) > 11 ? 1 : parseInt(month) + 1
       return `${parseInt(month) > 11 ? parseInt(year) + 1 : year}-${newMonth < 10 ? '0' + newMonth : newMonth}`
     })
   }
   function handleMonthDecrease() {
-    setCalenderDate(curr => {
+    _setCalenderDate(curr => {
       const [year, month] = curr.split('-')
       const newMonth = parseInt(month) < 2 ? 12 : parseInt(month) - 1
       return `${parseInt(month) < 2 ? parseInt(year) - 1 : year}-${newMonth < 10 ? '0' + newMonth : newMonth}`
     })
   }
 
+  function currentMonth() {
+    _setCalenderDate(new Date().toISOString().slice(0, 7))
+  }
+
+  function handleMonthChange(month) {
+    month === "" ? currentMonth() : _setCalenderDate(month);
+  }
+
   return (
     <div className="navigation">
-      <button className="button" onClick={() => setCalenderDate(new Date().toISOString().slice(0, 7))}>This Month</button>
-      <MonthPicker onIncrease={handleMonthIncrease} onDecrease={handleMonthDecrease} calenderMonth={calenderMonth} onMonthChange={setCalenderDate} />
-      <select>
-        <option value="all">All Members</option>
-        <option value="maruf">Maruf</option>
-        <option value="siam">Siam</option>
-        <option value="miraj">Miraj</option>
-        <option value="saif">Saif</option>
-      </select>
+      <button className="button" onClick={() => currentMonth()}>This Month</button>
+      <MonthPicker onIncrease={handleMonthIncrease} onDecrease={handleMonthDecrease} calenderMonth={calenderMonth} onMonthChange={handleMonthChange} />
+      <SelectMembers members={members} onChangeMember={setMembersInMonth} selectedMember={membersInMonth} />
     </div>
   )
 }
 
+// Month Picker
 function MonthPicker({ onIncrease, onDecrease, calenderMonth, onMonthChange }) {
-
-
   return (
     <div className="date-year picker">
       <button className="button" onClick={onDecrease}>&#10094;</button>
@@ -877,6 +879,101 @@ function MonthPicker({ onIncrease, onDecrease, calenderMonth, onMonthChange }) {
   )
 }
 
+// Month Input
 function MonthInput({ calenderMonth, onChange }) {
   return <input type="month" value={calenderMonth} onChange={e => onChange(e.target.value)} />
+}
+
+
+// Date Navigation
+function DateNavigation({ onDateChange }) {
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
+
+  function daysInThisMonth(uMonth, uYear) {
+    let date = new Date();
+    let month = uMonth || date.getMonth();
+    let year = uYear || date.getFullYear();
+    return new Date(year, month, 0).getDate();
+  }
+
+  function _setDate(date) {
+    setDate(date)
+    // onDateChange(date)
+  }
+
+  function handleDateIncrease() {
+    _setDate(curr => {
+      const [year, month, day] = curr.split('-');
+      const monthDays = daysInThisMonth(parseInt(month), parseInt(year));
+      const newDay = parseInt(day) >= monthDays ? 1 : parseInt(day) + 1;
+      const newMonth = parseInt(day) >= monthDays ? parseInt(month) > 11 ? 1 : parseInt(month) + 1 < 10 ? '0' + (parseInt(month) + 1) : parseInt(month) + 1 : month;
+      const newYear = parseInt(day) >= monthDays ? parseInt(month) > 11 ? parseInt(year) + 1 : year : year;
+      return `${newYear}-${newMonth < 10 ? newMonth : newMonth}-${newDay < 10 ? '0' + newDay : newDay}`
+    })
+  }
+  function handleDateDecrease() {
+    _setDate(curr => {
+      const [year, month, day] = curr.split('-');
+      const monthDays = daysInThisMonth(day < 2 ? parseInt(month) < 2 ? 12 : parseInt(month) - 1 : parseInt(month), day < 2 ? parseInt(month) < 2 ? parseInt(year) - 1 : year : year);
+      const newDay = parseInt(day) < 2 ? monthDays : parseInt(day) - 1;
+      const newMonth = parseInt(day) < 2 ? parseInt(month) < 2 ? 12 : parseInt(month) - 1 < 10 ? '0' + (parseInt(month) - 1) : parseInt(month) - 1 : month;
+      const newYear = parseInt(day) < 2 ? parseInt(month) < 2 ? parseInt(year) - 1 : year : year;
+      return `${newYear}-${newMonth < 10 ? newMonth : newMonth}-${newDay < 10 ? '0' + newDay : newDay}`
+    });
+  }
+
+
+
+  function currentDate() {
+    _setDate(new Date().toISOString().slice(0, 10))
+  }
+
+  function handleDateChange(date) {
+    date === "" ? currentDate() : _setDate(date);
+  }
+
+
+
+  return (
+    <div className="navigation">
+      <button className="button" onClick={() => currentDate()}>Today</button>
+      <DatePicker
+        onIncrease={handleDateIncrease}
+        onDecrease={handleDateDecrease}
+        date={date}
+        onDateChange={handleDateChange} />
+    </div>
+  )
+}
+
+// Date Picker
+function DatePicker({ onIncrease, onDecrease, date, onDateChange }) {
+  return (
+    <div className="date-month-year picker">
+      <button className="button" onClick={onDecrease}>&#10094;</button>
+      <DateInput date={date} onChange={onDateChange} />
+      <button className="button" onClick={onIncrease}>&#10095;</button>
+    </div>
+  )
+}
+
+// Date Input
+function DateInput({ date, onChange }) {
+  return <input type="date" value={date} onChange={e => onChange(e.target.value)} />
+}
+
+//Select Members
+function SelectMembers({ members, onChangeMember, selectedMember }) {
+
+  function handleMemberChange(e) {
+    const selectedMember = Array.from(e.target.selectedOptions, option => option.value);
+    onChangeMember(selectedMember)
+  }
+
+  return (
+    <select value={selectedMember.id} onChange={handleMemberChange}>
+      {members.map(member => <option key={member.id} value={member.id}>{member.name}</option>)}
+    </select>
+
+  )
 }

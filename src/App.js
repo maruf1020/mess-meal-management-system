@@ -198,11 +198,11 @@ const marketing = [
   },
 ];
 
-const meal = [
+const mealsData = [
   {
     "id": "2021-09-01",
     "date": "2021-09-01",
-    mills: [
+    meals: [
       {
         userId: 101,
         meal: 5,
@@ -223,25 +223,25 @@ const meal = [
       },
       {
         userId: 102,
-        meal: 4,
+        meal: 1,
         details: [
           {
             own: {
               breakfast: 1,
-              lunch: 1,
+              lunch: 0,
               dinner: 0,
             },
             guest: {
               breakfast: 0,
-              lunch: 1,
-              dinner: 1,
+              lunch: 0,
+              dinner: 0,
             }
           }
         ],
       },
       {
         userId: 103,
-        meal: 3,
+        meal: 2,
         details: [
           {
             own: {
@@ -252,23 +252,24 @@ const meal = [
             guest: {
               breakfast: 0,
               lunch: 0,
-              dinner: 1,
+              dinner: 0,
             }
           }
         ]
       },
       {
         userId: 104,
-        meal: 2,
+        meal: 0,
         details: [
           {
             own: {
-              breakfast: 1,
+              breakfast: 0,
               lunch: 0,
               dinner: 0,
             },
             guest: {
-              breakfast: 1,
+              breakfast: 0
+              ,
               lunch: 0,
               dinner: 0,
             }
@@ -280,7 +281,7 @@ const meal = [
   {
     "id": "2021-09-02",
     "date": "2021-09-02",
-    mills: [
+    meals: [
       {
         userId: 101,
         meal: 5,
@@ -358,7 +359,7 @@ const meal = [
   {
     "id": "2021-09-03",
     "date": "2021-09-03",
-    mills: [
+    meals: [
       {
         userId: 101,
         meal: 5,
@@ -507,63 +508,65 @@ function LabelContainer() {
 }
 
 function MealCalender() {
+
+  const [meals, setMeals] = useState(mealsData);
+
+  console.log(meals);
+
+  const users = meals
+    .filter(meal => meal.id.includes("2021-09"))
+    .map(meal => {
+      return meal.meals.map(m => m.userId)
+
+    })
+    //from array of array to array
+    .flat()
+    //remove duplicate
+    .filter((value, index, self) => self.indexOf(value) === index)
+    //sort
+    .sort((a, b) => a - b)
+
   return (
     <div className="meal-calender box">
       <h3>Meal Calender</h3>
       <MonthNavigation />
       <h4>Displayed by All Members</h4>
       <table>
-
         <tbody>
           <tr>
             <th>Date</th>
-            <th>Maruf</th>
-            <th>Siam</th>
-            <th>Miraj</th>
-            <th>Saif</th>
+            {
+              users
+                //map members id to get their name
+                .map(userId => {
+                  return members.find(member => member.id === userId).name
+                })
+                //render to jsx
+                .map(userId => <th key={userId}>{userId}</th>)
+            }
           </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>2</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>3</td>
-            <td>3</td>
-            <td>2</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>3</td>
-            <td>3</td>
-            <td>2</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>3</td>
-            <td>3</td>
-            <td>2</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>3</td>
-            <td>3</td>
-            <td>2</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>3</td>
-            <td>3</td>
-            <td>2</td>
-            <td>2</td>
-          </tr>
+          {
+            meals
+              .filter(meal => meal.id.includes("2021-09"))
+              .map(meal => {
+                return (
+                  <tr key={meal.id}>
+                    <td key={meal.date.split("-")[2]}>{meal.date.split("-")[2]}</td>
+                    {
+                      users.map(userId => {
+                        return (
+                          <>
+                            <td key={userId}>
+                              {meal.meals.find(m => m.userId === userId) && meal.meals.find(m => m.userId === userId).meal || 0}
+                            </td>
+                          </>
+                        )
+                      })
+                    }
+                  </tr>
+                )
+              })
+          }
         </tbody>
       </table>
       <br />
@@ -611,7 +614,7 @@ function MealCalender() {
 
 function MealAssign() {
   return (
-    <div className="assign-mills box">
+    <div className="assign-meals box">
       <h3>Assign Meals</h3>
       <DateNavigation />
       <table>

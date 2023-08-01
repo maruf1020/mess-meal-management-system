@@ -383,6 +383,11 @@ input[type="checkbox"] {
   place-content: center;
 }
 
+/* check box :checked  */
+input[type="checkbox"]:checked {
+  border: 2px solid var(--v-grey-lighten4);
+}
+
 input[type="checkbox"]::before {
   content: "";
   width: 0.65em;
@@ -448,4 +453,12 @@ footer a {
   color: var(--v-white-base);
   text-decoration: none;
   font-weight: 700;
+}
+
+.no-data-found {
+  padding: 20px;
+  width: 100%;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 }

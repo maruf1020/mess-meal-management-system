@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const members = [
   {
@@ -78,7 +78,7 @@ const members = [
 const marketing = [
   {
     id: 201,
-    date: "2021-09-01",
+    date: "2023-08-01",
     userId: 101,
     cost: 1000,
     description: "Bazar for 1st September",
@@ -86,7 +86,7 @@ const marketing = [
   },
   {
     id: 202,
-    date: "2021-09-02",
+    date: "2023-08-02",
     userId: 102,
     cost: 1000,
     description: "Bazar for 2nd September",
@@ -94,7 +94,7 @@ const marketing = [
   },
   {
     id: 203,
-    date: "2021-09-03",
+    date: "2023-08-03",
     userId: 103,
     cost: 1000,
     description: "Bazar for 3rd September",
@@ -102,7 +102,7 @@ const marketing = [
   },
   {
     id: 204,
-    date: "2021-09-04",
+    date: "2023-08-04",
     userId: 104,
     cost: 1000,
     description: "Bazar for 4th September",
@@ -110,7 +110,7 @@ const marketing = [
   },
   {
     id: 205,
-    date: "2021-09-05",
+    date: "2023-08-05",
     userId: 105,
     cost: 1000,
     description: "Bazar for 5th September",
@@ -118,7 +118,7 @@ const marketing = [
   },
   {
     id: 206,
-    date: "2021-09-06",
+    date: "2023-08-06",
     userId: 106,
     cost: 1000,
     description: "Bazar for 6th September",
@@ -126,7 +126,7 @@ const marketing = [
   },
   {
     id: 207,
-    date: "2021-09-07",
+    date: "2023-08-07",
     userId: 107,
     cost: 1000,
     description: "Bazar for 7th September",
@@ -134,7 +134,7 @@ const marketing = [
   },
   {
     id: 208,
-    date: "2021-09-08",
+    date: "2023-08-08",
     userId: 108,
     cost: 1000,
     description: "Bazar for 8th September",
@@ -142,7 +142,7 @@ const marketing = [
   },
   {
     id: 209,
-    date: "2021-09-09",
+    date: "2023-08-09",
     userId: 101,
     cost: 1000,
     description: "Bazar for 9th September",
@@ -150,7 +150,7 @@ const marketing = [
   },
   {
     id: 210,
-    date: "2021-09-10",
+    date: "2023-08-10",
     userId: 102,
     cost: 1000,
     description: "Bazar for 10th September",
@@ -158,7 +158,7 @@ const marketing = [
   },
   {
     id: 211,
-    date: "2021-09-11",
+    date: "2023-08-11",
     userId: 103,
     cost: 1000,
     description: "Bazar for 11th September",
@@ -166,7 +166,7 @@ const marketing = [
   },
   {
     id: 212,
-    date: "2021-09-12",
+    date: "2023-08-12",
     userId: 104,
     cost: 1000,
     description: "Bazar for 12th September",
@@ -174,7 +174,7 @@ const marketing = [
   },
   {
     id: 213,
-    date: "2021-09-13",
+    date: "2023-08-13",
     userId: 105,
     cost: 1000,
     description: "Bazar for 13th September",
@@ -182,7 +182,7 @@ const marketing = [
   },
   {
     id: 214,
-    date: "2021-09-14",
+    date: "2023-08-14",
     userId: 106,
     cost: 1000,
     description: "Bazar for 14th September",
@@ -190,7 +190,7 @@ const marketing = [
   },
   {
     id: 215,
-    date: "2021-09-15",
+    date: "2023-08-15",
     userId: 107,
     cost: 1000,
     description: "Bazar for 15th September",
@@ -200,259 +200,388 @@ const marketing = [
 
 const mealsData = [
   {
-    "id": "2021-09-01",
-    "date": "2021-09-01",
+    "id": "2023-08-01",
+    "date": "2023-08-01",
     meals: [
       {
         userId: 101,
         meal: 5,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 1,
-            },
-            guest: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 1,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
           }
-        ],
+        }
+        ,
       },
       {
         userId: 102,
         meal: 1,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 0,
-              lunch: 0,
-              dinner: 0,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0,
+            lunch: 0,
+            dinner: 0,
           }
-        ],
+        }
+        ,
       },
       {
         userId: 103,
         meal: 2,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 0,
-              lunch: 0,
-              dinner: 0,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0,
+            lunch: 0,
+            dinner: 0,
           }
-        ]
+        }
+
       },
       {
         userId: 104,
         meal: 0,
-        details: [
-          {
-            own: {
-              breakfast: 0,
-              lunch: 0,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 0
-              ,
-              lunch: 0,
-              dinner: 0,
-            }
+        details:
+        {
+          own: {
+            breakfast: 0,
+            lunch: 0,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0
+            ,
+            lunch: 0,
+            dinner: 0,
           }
-        ]
+        }
+
       },
     ],
   },
   {
-    "id": "2021-09-02",
-    "date": "2021-09-02",
+    "id": "2023-08-02",
+    "date": "2023-08-02",
     meals: [
       {
         userId: 101,
         meal: 5,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 1,
-            },
-            guest: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 1,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
           }
-        ],
+        }
+        ,
       },
       {
         userId: 102,
         meal: 4,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 0,
-              lunch: 1,
-              dinner: 1,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
           }
-        ],
+        }
+        ,
       },
       {
         userId: 103,
         meal: 3,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 0,
-              lunch: 0,
-              dinner: 1,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0,
+            lunch: 0,
+            dinner: 1,
           }
-        ]
+        }
+
       },
       {
         userId: 104,
         meal: 2,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
           }
-        ]
+        }
+
       },
     ],
   },
   {
-    "id": "2021-09-03",
-    "date": "2021-09-03",
+    "id": "2023-08-03",
+    "date": "2023-08-03",
     meals: [
       {
         userId: 101,
         meal: 5,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 1,
-            },
-            guest: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
           }
-        ],
+        }
+        ,
       },
       {
         userId: 102,
         meal: 4,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 0,
-              lunch: 1,
-              dinner: 1,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
           }
-        ],
+        }
+        ,
       },
       {
         userId: 103,
         meal: 3,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 0,
-              lunch: 0,
-              dinner: 1,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0,
+            lunch: 0,
+            dinner: 1,
           }
-        ]
+        }
+
       },
       {
         userId: 104,
         meal: 2,
-        details: [
-          {
-            own: {
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            },
-            guest: {
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            }
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
           }
-        ]
+        }
+
+      },
+    ],
+  },
+  {
+    "id": "2023-08-08",
+    "date": "2023-08-08",
+    meals: [
+      {
+        userId: 101,
+        meal: 5,
+        details:
+        {
+          own: {
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          }
+        }
+        ,
+      },
+      {
+        userId: 102,
+        meal: 4,
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
+          }
+        }
+        ,
+      },
+      {
+        userId: 103,
+        meal: 3,
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 0,
+            lunch: 0,
+            dinner: 1,
+          }
+        }
+
+      },
+      {
+        userId: 104,
+        meal: 2,
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
+          }
+        }
+
+      },
+    ],
+  },
+  {
+    "id": "2023-07-08",
+    "date": "2023-07-08",
+    meals: [
+      {
+        userId: 101,
+        meal: 5,
+        details:
+        {
+          own: {
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          }
+        }
+        ,
+      },
+      {
+        userId: 104,
+        meal: 2,
+        details:
+        {
+          own: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
+          },
+          guest: {
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
+          }
+        }
+
       },
     ],
   },
 ];
 
-const membersInMonth = [101, 102, 103, 104];
+const membersMonthWise = [
+  {
+    month: "2023-07",
+    members: [101, 104]
+  },
+  {
+    month: "2023-08",
+    members: [101, 102, 103, 104]
+  }
+]
 
 const storeMoney = [
   {
     userId: 101,
     amount: 1000,
-    date: "2021-09-01",
+    date: "2023-08-01",
   },
   {
     userId: 102,
     amount: 1000,
-    date: "2021-09-01",
+    date: "2023-08-01",
   },
   {
     userId: 103,
     amount: 1000,
-    date: "2021-09-01",
+    date: "2023-08-01",
   },
 ]
 
@@ -475,11 +604,12 @@ function Header() {
 }
 
 function Main() {
+  const [meals, setMeals] = useState(mealsData);
   return (
     <main>
       <LabelContainer />
-      <MealCalender />
-      <MealAssign />
+      <MealCalender meals={meals} />
+      <MealAssign setMeals={setMeals} meals={meals} />
       <ShortSummary />
       <MarketingHistory />
       <StoreMoneyHistory />
@@ -507,112 +637,135 @@ function LabelContainer() {
   );
 }
 
-function MealCalender() {
+function MealCalender({ meals }) {
 
-  const [meals, setMeals] = useState(mealsData);
+  const [calenderMonth, setCalenderDate] = useState(new Date().toISOString().slice(0, 7));
+  const [membersInMonth, setMembersInMonth] = useState([]);
+  const [selectedMember, setSelectedMember] = useState("all");
 
-  console.log(meals);
+  // this function will return a array with [01, 02 ... last day of month] and take month as argument like (2023-08)
+  function getDaysInMonth(month) {
+    const date = new Date(month);
+    const days = [];
+    while (date.getMonth() === new Date(month).getMonth()) {
+      days.push(new Date(date).toISOString().slice(0, 10));
+      date.setDate(date.getDate() + 1);
+    }
+    return days;
+  }
 
-  const users = meals
-    .filter(meal => meal.id.includes("2021-09"))
+
+  let mealsInMonth = getDaysInMonth(calenderMonth).map(day => {
+    return [...meals].find(meal => meal.date === day) ? [...meals].find(meal => meal.date === day) : { id: day, date: day, meals: [] }
+  });
+
+  let users = [...meals]
+    .filter(meal => meal.id.includes(calenderMonth))
     .map(meal => {
       return meal.meals.map(m => m.userId)
-
     })
     //from array of array to array
     .flat()
     //remove duplicate
     .filter((value, index, self) => self.indexOf(value) === index)
     //sort
-    .sort((a, b) => a - b)
+    .sort((a, b) => a - b);
+
+  useEffect(() => {
+    const all = { id: "all", name: "All" }
+    setMembersInMonth([all, ...users.map(userId => {
+      return { id: userId, name: members.find(member => member.id === userId).name }
+    })])
+  }, [calenderMonth])
+
 
   return (
     <div className="meal-calender box">
       <h3>Meal Calender</h3>
-      <MonthNavigation />
+      <MonthNavigation
+        calenderMonth={calenderMonth}
+        setCalenderDate={setCalenderDate}
+        membersInMonth={membersInMonth}
+        selectedMember={selectedMember}
+        setSelectedMember={setSelectedMember}
+      />
       <h4>Displayed by All Members</h4>
-      <table>
-        <tbody>
-          <tr>
-            <th>Date</th>
-            {
-              users
-                //map members id to get their name
-                .map(userId => {
-                  return members.find(member => member.id === userId).name
-                })
-                //render to jsx
-                .map(userId => <th key={userId}>{userId}</th>)
-            }
-          </tr>
-          {
-            meals
-              .filter(meal => meal.id.includes("2021-09"))
-              .map(meal => {
-                return (
-                  <tr key={meal.id}>
-                    <td key={meal.date.split("-")[2]}>{meal.date.split("-")[2]}</td>
-                    {
-                      users.map(userId => {
-                        return (
-                          <>
-                            <td key={userId}>
-                              {meal.meals.find(m => m.userId === userId) && meal.meals.find(m => m.userId === userId).meal || 0}
-                            </td>
-                          </>
-                        )
+      {
+        users.length <= 0 ? <p className="no-data-found">❗No meal history found in this month</p> :
+          selectedMember === "all" ?
+            (<table>
+              <tbody>
+                <tr>
+                  <th>Date</th>
+                  {
+                    users
+                      //map members id to get their name
+                      .map(userId => {
+                        return members.find(member => member.id === userId).name
                       })
-                    }
-                  </tr>
-                )
-              })
-          }
-        </tbody>
-      </table>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <table>
-        <tbody>
-          <tr>
-            <th>Date</th>
-            <th>Breakfast</th>
-            <th>Lunch</th>
-            <th>Dinner</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>
-              <input disabled type="checkbox" />
-            </td>
-            <td>
-              <input disabled type="checkbox" />
-            </td>
-            <td>
-              <input disabled type="checkbox" />
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>
-              <input disabled type="checkbox" />
-            </td>
-            <td>
-              <input disabled type="checkbox" />
-            </td>
-            <td>
-              <input disabled type="checkbox" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                      //render to jsx
+                      .map(userId => <th key={userId}>{userId}</th>)
+                  }
+                </tr>
+                {
+                  mealsInMonth
+                    .filter(meal => meal.id.includes(calenderMonth))
+                    .map(meal => {
+                      return (
+                        <tr key={meal.id}>
+                          <td key={meal.date.split("-")[2]}>{meal.date.split("-")[2]}</td>
+                          {
+                            users.map(userId => {
+                              return (
+                                <>
+                                  <td key={userId}>
+                                    {meal.meals.find(m => m.userId === userId) && meal.meals.find(m => m.userId === userId).meal || 0}
+                                  </td>
+                                </>
+                              )
+                            })
+                          }
+                        </tr>
+                      )
+                    })
+                }
+              </tbody>
+            </table>) : (<table>
+              <tbody>
+                <tr>
+                  <th>Date</th>
+                  <th>Breakfast</th>
+                  <th>Lunch</th>
+                  <th>Dinner</th>
+                </tr>
+                {
+                  mealsInMonth.map(meal => {
+                    let breakfast = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.own?.breakfast === 1 ? "checked" : "";
+                    let lunch = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.own?.lunch === 1 ? "checked" : "";
+                    let dinner = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.own?.dinner === 1 ? "checked" : "";
+                    return (
+                      <tr key={meal.id}>
+                        <td key={meal.id}>{meal.date.split("-")[2]}</td>
+                        <td>
+                          <input disabled type="checkbox" checked={breakfast} />
+                        </td>
+                        <td>
+                          <input disabled type="checkbox" checked={lunch} />
+                        </td>
+                        <td>
+                          <input disabled type="checkbox" checked={dinner} />
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>)}
     </div>
   )
 }
 
-function MealAssign() {
+function MealAssign({ meals, setMeals }) {
   return (
     <div className="assign-meals box">
       <h3>Assign Meals</h3>
@@ -830,24 +983,16 @@ function FinalSummary() {
 
 
 // Month Navigation
-function MonthNavigation({ onMonthChange }) {
-  const [calenderMonth, setCalenderDate] = useState(new Date().toISOString().slice(0, 7));
-  const [membersInMonth, setMembersInMonth] = useState([101, 102, 103, 104]);
-
-  function _setCalenderDate(date) {
-    setCalenderDate(date)
-    // onMonthChange(date)
-  }
-
+function MonthNavigation({ calenderMonth, setCalenderDate, membersInMonth, selectedMember, setSelectedMember }) {
   function handleMonthIncrease() {
-    _setCalenderDate(curr => {
+    setCalenderDate(curr => {
       const [year, month] = curr.split('-')
       const newMonth = parseInt(month) > 11 ? 1 : parseInt(month) + 1
       return `${parseInt(month) > 11 ? parseInt(year) + 1 : year}-${newMonth < 10 ? '0' + newMonth : newMonth}`
     })
   }
   function handleMonthDecrease() {
-    _setCalenderDate(curr => {
+    setCalenderDate(curr => {
       const [year, month] = curr.split('-')
       const newMonth = parseInt(month) < 2 ? 12 : parseInt(month) - 1
       return `${parseInt(month) < 2 ? parseInt(year) - 1 : year}-${newMonth < 10 ? '0' + newMonth : newMonth}`
@@ -855,18 +1000,26 @@ function MonthNavigation({ onMonthChange }) {
   }
 
   function currentMonth() {
-    _setCalenderDate(new Date().toISOString().slice(0, 7))
+    setCalenderDate(new Date().toISOString().slice(0, 7))
   }
 
   function handleMonthChange(month) {
-    month === "" ? currentMonth() : _setCalenderDate(month);
+    month === "" ? currentMonth() : setCalenderDate(month);
   }
 
   return (
     <div className="navigation">
-      <button className="button" onClick={() => currentMonth()}>This Month</button>
-      <MonthPicker onIncrease={handleMonthIncrease} onDecrease={handleMonthDecrease} calenderMonth={calenderMonth} onMonthChange={handleMonthChange} />
-      <SelectMembers members={members} onChangeMember={setMembersInMonth} selectedMember={membersInMonth} />
+      <button className="button"
+        onClick={() => currentMonth()}>This Month</button>
+      <MonthPicker
+        onIncrease={handleMonthIncrease}
+        onDecrease={handleMonthDecrease}
+        calenderMonth={calenderMonth}
+        onMonthChange={handleMonthChange} />
+      <SelectMembers
+        members={membersInMonth}
+        onChangeMember={setSelectedMember}
+        selectedMember={selectedMember} />
     </div>
   )
 }
@@ -969,14 +1122,12 @@ function DateInput({ date, onChange }) {
 function SelectMembers({ members, onChangeMember, selectedMember }) {
 
   function handleMemberChange(e) {
-    const selectedMember = Array.from(e.target.selectedOptions, option => option.value);
-    onChangeMember(selectedMember)
+    onChangeMember(e.target.value)
   }
 
   return (
     <select value={selectedMember.id} onChange={handleMemberChange}>
       {members.map(member => <option key={member.id} value={member.id}>{member.name}</option>)}
     </select>
-
   )
 }

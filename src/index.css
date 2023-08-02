@@ -191,6 +191,10 @@ main>*:last-child {
   margin: 0 auto
 }
 
+.assign-meals.box {
+  border: 1px solid var(--v-primary-base);
+}
+
 .label-container {
   display: flex;
   gap: 2rem;

@@ -213,11 +213,14 @@ const mealsData = [
             lunch: 1,
             dinner: 1,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 1,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 1,
+              dinner: 0,
+            },
+          ]
         }
         ,
       },
@@ -231,11 +234,14 @@ const mealsData = [
             lunch: 0,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0,
-            lunch: 0,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 0,
+              dinner: 0,
+            },
+          ]
         }
         ,
       },
@@ -249,11 +255,14 @@ const mealsData = [
             lunch: 1,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0,
-            lunch: 0,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 0,
+              dinner: 0,
+            },
+          ]
         }
 
       },
@@ -267,12 +276,14 @@ const mealsData = [
             lunch: 0,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0
-            ,
-            lunch: 0,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 0,
+              dinner: 0,
+            },
+          ]
         }
 
       },
@@ -292,11 +303,14 @@ const mealsData = [
             lunch: 1,
             dinner: 1,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 1,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 1,
+              dinner: 0,
+            },
+          ]
         }
         ,
       },
@@ -310,11 +324,14 @@ const mealsData = [
             lunch: 1,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0,
-            lunch: 1,
-            dinner: 1,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 1,
+              dinner: 1,
+            },
+          ]
         }
         ,
       },
@@ -328,11 +345,14 @@ const mealsData = [
             lunch: 1,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0,
-            lunch: 0,
-            dinner: 1,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 0,
+              dinner: 1,
+            },
+          ]
         }
 
       },
@@ -346,11 +366,14 @@ const mealsData = [
             lunch: 0,
             dinner: 0,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 0,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 0,
+              dinner: 0,
+            },
+          ]
         }
 
       },
@@ -370,11 +393,14 @@ const mealsData = [
             lunch: 1,
             dinner: 0,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 1,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 1,
+              dinner: 0,
+            },
+          ]
         }
         ,
       },
@@ -388,11 +414,14 @@ const mealsData = [
             lunch: 1,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0,
-            lunch: 1,
-            dinner: 1,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 1,
+              dinner: 1,
+            },
+          ]
         }
         ,
       },
@@ -406,11 +435,14 @@ const mealsData = [
             lunch: 1,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0,
-            lunch: 0,
-            dinner: 1,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 0,
+              dinner: 1,
+            },
+          ]
         }
 
       },
@@ -424,11 +456,14 @@ const mealsData = [
             lunch: 0,
             dinner: 0,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 0,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 0,
+              dinner: 0,
+            },
+          ]
         }
 
       },
@@ -448,11 +483,14 @@ const mealsData = [
             lunch: 1,
             dinner: 1,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 1,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 1,
+              dinner: 0,
+            },
+          ]
         }
         ,
       },
@@ -466,11 +504,14 @@ const mealsData = [
             lunch: 1,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0,
-            lunch: 1,
-            dinner: 1,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 1,
+              dinner: 1,
+            },
+          ]
         }
         ,
       },
@@ -484,11 +525,14 @@ const mealsData = [
             lunch: 1,
             dinner: 0,
           },
-          guest: {
-            breakfast: 0,
-            lunch: 0,
-            dinner: 1,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 0,
+              lunch: 0,
+              dinner: 1,
+            },
+          ]
         }
 
       },
@@ -502,11 +546,14 @@ const mealsData = [
             lunch: 0,
             dinner: 0,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 0,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 0,
+              dinner: 0,
+            },
+          ]
         }
 
       },
@@ -526,11 +573,14 @@ const mealsData = [
             lunch: 1,
             dinner: 1,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 1,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 1,
+              dinner: 0,
+            },
+          ]
         }
         ,
       },
@@ -544,11 +594,14 @@ const mealsData = [
             lunch: 0,
             dinner: 0,
           },
-          guest: {
-            breakfast: 1,
-            lunch: 0,
-            dinner: 0,
-          }
+          guest: [
+            {
+              name: "No name",
+              breakfast: 1,
+              lunch: 0,
+              dinner: 0,
+            },
+          ]
         }
 
       },
@@ -558,10 +611,12 @@ const mealsData = [
 
 const membersMonthWise = [
   {
+    id: "2023-07",
     month: "2023-07",
     members: [101, 104]
   },
   {
+    id: "2023-08",
     month: "2023-08",
     members: [101, 102, 103, 104]
   }
@@ -689,9 +744,9 @@ function MealCalender({ meals }) {
         selectedMember={selectedMember}
         setSelectedMember={setSelectedMember}
       />
-      <h4>Displayed by All Members</h4>
+      <h4>Displayed by {selectedMember === "all" ? "all member" : members.find(member => member.id === Number(selectedMember))?.name}</h4>
       {
-        users.length <= 0 ? <p className="no-data-found">❗No meal history found in this month</p> :
+        users.length <= 0 ? <p className="no-data-found">No meal history found in this month</p> :
           selectedMember === "all" ?
             (<table>
               <tbody>
@@ -765,82 +820,167 @@ function MealCalender({ meals }) {
   )
 }
 
+function Checkbox({ handleMealChange, isChecked, value }) {
+  const [checked, setChecked] = useState(isChecked)
+
+  useEffect(() => {
+    setChecked(isChecked)
+  }, [isChecked])
+
+  return (
+    <input type="checkbox" checked={checked} value={value} key={value}
+      onChange={e => {
+        setChecked(e.target.checked)
+        handleMealChange(e.target.value)
+      }}
+    />
+  )
+}
+
 function MealAssign({ meals, setMeals }) {
+
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [membersInMonth, setMembersInMonth] = useState([]);
+
+  useEffect(() => {
+    const currentMonth = date.split("-")[0] + "-" + date.split("-")[1];
+    setMembersInMonth(membersMonthWise.find(m => m.month === currentMonth)?.members || [])
+  }, [date])
+
+  function handleMealChange(data) {
+    const [userId, userType, food] = data.split(",");
+
+    //It can create new meal and also it can update the state of the last meal if it exists
+    const newMeals = [...meals];
+    const mealIndex = newMeals.findIndex(m => m.date === date);
+    const meal = newMeals[mealIndex];
+    //also check if the user is already in the meal
+    if (meal) {
+      if (meal.meals.find(m => m.userId === Number(userId))) {
+        const mealDetails = meal.meals.find(m => m.userId === Number(userId)).details;
+        mealDetails[userType][food] = mealDetails[userType][food] === 1 ? 0 : 1;
+      } else {
+        meal.meals.push({
+          userId: Number(userId),
+          meal: 1,
+          details: {
+            own: {
+              breakfast: 0,
+              lunch: 0,
+              dinner: 0
+            },
+            guest: [{
+              breakfast: 0,
+              lunch: 0,
+              dinner: 0
+            }]
+          }
+        })
+        meal.meals[meal.meals.length - 1].details[userType][food] = 1;
+      }
+    }
+    else {
+      const newMeal = {
+        id: date,
+        date: date,
+        meals: [
+          {
+            userId: Number(userId),
+            meal: 1,
+            details: {
+              own: {
+                breakfast: 0,
+                lunch: 0,
+                dinner: 0
+              },
+              guest: [{
+                breakfast: 0,
+                lunch: 0,
+                dinner: 0
+              }]
+            }
+          }
+        ]
+      }
+      newMeal.meals[0].details[userType][food] = 1;
+      newMeals.push(newMeal)
+    }
+    setMeals(newMeals)
+  }
+
+  const food = ["breakfast", "lunch", "dinner"]
+
   return (
     <div className="assign-meals box">
       <h3>Assign Meals</h3>
-      <DateNavigation />
-      <table>
-        <tbody>
-          <tr>
-            <th>Time</th>
-            <th>Breakfast</th>
-            <th>Lunch</th>
-            <th>Dinner</th>
-          </tr>
-          <tr>
-            <td>Maruf</td>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <input type="checkbox" />
-            </td>
+      <DateNavigation date={date} setDate={setDate} />
 
-          </tr>
-          <tr>
-            <td>Miraz</td>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <input type="checkbox" />
-            </td>
-          </tr>
-          <tr>
-            <td>Siam</td>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <input type="checkbox" />
-            </td>
-          </tr>
-          <tr>
-            <td>Aman (Siam)</td>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <input type="checkbox" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button className="add-guest-button button">&#10009; Add Guest</button>
-      <form className="add-guest-wrapper">
-        <select>
-          <option value="0">Guest Owner</option>
-          <option value="maruf">Maruf</option>
-          <option value="siam">Siam</option>
-          <option value="miraj">Miraj</option>
-          <option value="saif">Saif</option>
-        </select>
-        <input type="text" placeholder="Guest Name" />
-        <button className="button" type="submit">&#10009; Add</button>
-      </form>
+      {membersInMonth.length <= 0 ? <p className="no-data-found">No assign Member Member Available</p> :
+        (<>
+          <table>
+            <tbody>
+              <tr>
+                <th>Time</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+              </tr>
+              {
+
+                membersInMonth.map(member => {
+
+                  const foodData = [
+                    {
+                      name: "breakfast",
+                      isChecked: meals.find(m => m.date === date)?.meals.find(m => m.userId === member)?.details?.own?.breakfast === 1 ? "checked" : ""
+                    },
+                    {
+                      name: "lunch",
+                      isChecked: meals.find(m => m.date === date)?.meals.find(m => m.userId === member)?.details?.own?.lunch === 1 ? "checked" : ""
+                    },
+                    {
+                      name: "dinner",
+                      isChecked: meals.find(m => m.date === date)?.meals.find(m => m.userId === member)?.details?.own?.dinner === 1 ? "checked" : ""
+                    }
+                  ] || [{ name: "breakfast", isChecked: 0 }, { name: "lunch", isChecked: 0 }, { name: "dinner", isChecked: 0 }];
+
+                  return (
+                    <tr key={member.id}>
+                      <td key={member.id}>{members.find(mbr => mbr.id === member).name}</td>
+                      {
+                        food.map(f => {
+                          return (
+                            <td key={f}>
+                              <Checkbox
+                                key={member + ",own," + f}
+                                data={f}
+                                type="checkbox"
+                                value={member + ",own," + f}
+                                isChecked={foodData.find(fd => fd.name === f).isChecked}
+                                handleMealChange={handleMealChange} />
+                            </td>
+                          )
+                        })
+                      }
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+          <button className="add-guest-button button">&#10009; Add Guest</button>
+          <form className="add-guest-wrapper">
+            <select>
+              <option value="0">Guest Owner</option>
+              <option value="maruf">Maruf</option>
+              <option value="siam">Siam</option>
+              <option value="miraj">Miraj</option>
+              <option value="saif">Saif</option>
+            </select>
+            <input type="text" placeholder="Guest Name" />
+            <button className="button" type="submit">&#10009; Add</button>
+          </form>
+        </>)}
     </div>
   )
 }
@@ -1042,8 +1182,7 @@ function MonthInput({ calenderMonth, onChange }) {
 
 
 // Date Navigation
-function DateNavigation({ onDateChange }) {
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
+function DateNavigation({ date, setDate }) {
 
   function daysInThisMonth(uMonth, uYear) {
     let date = new Date();
@@ -1052,13 +1191,8 @@ function DateNavigation({ onDateChange }) {
     return new Date(year, month, 0).getDate();
   }
 
-  function _setDate(date) {
-    setDate(date)
-    // onDateChange(date)
-  }
-
   function handleDateIncrease() {
-    _setDate(curr => {
+    setDate(curr => {
       const [year, month, day] = curr.split('-');
       const monthDays = daysInThisMonth(parseInt(month), parseInt(year));
       const newDay = parseInt(day) >= monthDays ? 1 : parseInt(day) + 1;
@@ -1068,7 +1202,7 @@ function DateNavigation({ onDateChange }) {
     })
   }
   function handleDateDecrease() {
-    _setDate(curr => {
+    setDate(curr => {
       const [year, month, day] = curr.split('-');
       const monthDays = daysInThisMonth(day < 2 ? parseInt(month) < 2 ? 12 : parseInt(month) - 1 : parseInt(month), day < 2 ? parseInt(month) < 2 ? parseInt(year) - 1 : year : year);
       const newDay = parseInt(day) < 2 ? monthDays : parseInt(day) - 1;
@@ -1081,11 +1215,11 @@ function DateNavigation({ onDateChange }) {
 
 
   function currentDate() {
-    _setDate(new Date().toISOString().slice(0, 10))
+    setDate(new Date().toISOString().slice(0, 10))
   }
 
   function handleDateChange(date) {
-    date === "" ? currentDate() : _setDate(date);
+    date === "" ? currentDate() : setDate(date);
   }
 
 

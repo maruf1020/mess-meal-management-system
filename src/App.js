@@ -206,85 +206,69 @@ const mealsData = [
       {
         userId: 101,
         meal: 5,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 1,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-          ]
-        }
+          {
+            type: "guest",
+            name: "Shumon",
+            id: 201,
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+        ]
         ,
       },
       {
         userId: 102,
         meal: 1,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 0,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 0,
-              dinner: 0,
-            },
-          ]
-        }
+        ]
         ,
       },
       {
         userId: 103,
         meal: 2,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 0,
-              dinner: 0,
-            },
-          ]
-        }
+        ]
 
       },
       {
         userId: 104,
         meal: 0,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 0,
             lunch: 0,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 0,
-              dinner: 0,
-            },
-          ]
-        }
+          {
+            type: "guest",
+            name: "Ripon",
+            id: 204,
+            breakfast: 0,
+            lunch: 0,
+            dinner: 0,
+          },
+        ]
 
       },
     ],
@@ -296,85 +280,69 @@ const mealsData = [
       {
         userId: 101,
         meal: 5,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 1,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-          ]
-        }
+          {
+            type: "guest",
+            name: "Noman",
+            id: 205,
+            breakfast: 1,
+            lunch: 1,
+            dinner: 0,
+          },
+        ]
         ,
       },
       {
         userId: 102,
         meal: 4,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 1,
-              dinner: 1,
-            },
-          ]
-        }
+          {
+            type: "guest",
+            name: "Hasan",
+            id: 206,
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
+          },
+        ]
         ,
       },
       {
         userId: 103,
         meal: 3,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 0,
-              dinner: 1,
-            },
-          ]
-        }
+        ]
 
       },
       {
         userId: 104,
         meal: 2,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 0,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            },
-          ]
-        }
+        ]
 
       },
     ],
@@ -386,85 +354,69 @@ const mealsData = [
       {
         userId: 101,
         meal: 5,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-          ]
-        }
+          {
+            type: "guest",
+            name: "Shihan",
+            id: 20611,
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
+          },
+          {
+            type: "guest",
+            name: "Habib",
+            id: 20622,
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
+          },
+        ]
         ,
       },
       {
         userId: 102,
         meal: 4,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 1,
-              dinner: 1,
-            },
-          ]
-        }
+        ]
         ,
       },
       {
         userId: 103,
         meal: 3,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 0,
-              dinner: 1,
-            },
-          ]
-        }
+        ]
 
       },
       {
         userId: 104,
         meal: 2,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 0,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            },
-          ]
-        }
+        ]
 
       },
     ],
@@ -476,85 +428,69 @@ const mealsData = [
       {
         userId: 101,
         meal: 5,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 0,
             lunch: 1,
             dinner: 1,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-          ]
-        }
+        ]
         ,
       },
       {
         userId: 102,
         meal: 4,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 1,
-              dinner: 1,
-            },
-          ]
-        }
+          {
+            type: "guest",
+            name: "Ripon",
+            id: 2055,
+            breakfast: 0,
+            lunch: 1,
+            dinner: 1,
+          },
+        ]
         ,
       },
       {
         userId: 103,
         meal: 3,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 1,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 0,
-              lunch: 0,
-              dinner: 1,
-            },
-          ]
-        }
+          {
+            type: "guest",
+            name: "Hasan",
+            id: 2066,
+            breakfast: 0,
+            lunch: 0,
+            dinner: 1,
+          },
+        ]
 
       },
       {
         userId: 104,
         meal: 2,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 0,
             dinner: 0,
-          },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            },
-          ]
-        }
+          }
+        ]
 
       },
     ],
@@ -566,43 +502,35 @@ const mealsData = [
       {
         userId: 101,
         meal: 5,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 0,
             lunch: 1,
             dinner: 1,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 1,
-              dinner: 0,
-            },
-          ]
-        }
+        ]
         ,
       },
       {
         userId: 104,
         meal: 2,
-        details:
-        {
-          own: {
+        details: [
+          {
+            type: "own",
             breakfast: 1,
             lunch: 0,
             dinner: 0,
           },
-          guest: [
-            {
-              name: "No name",
-              breakfast: 1,
-              lunch: 0,
-              dinner: 0,
-            },
-          ]
-        }
+          {
+            type: "guest",
+            name: "Siam",
+            id: 2099,
+            breakfast: 1,
+            lunch: 0,
+            dinner: 0,
+          },
+        ]
 
       },
     ],
@@ -779,7 +707,9 @@ function MealCalender({ meals }) {
                               return (
                                 <>
                                   <td key={userId}>
-                                    {meal.meals.find(m => m.userId === userId) && meal.meals.find(m => m.userId === userId).meal || 0}
+                                    {meal.meals.find(m => m.userId === userId) && meal.meals.find(m => m.userId === userId).details.reduce((acc, cur) => {
+                                      return acc + (cur.breakfast ? Number(cur.breakfast) : 0) + (cur.lunch ? Number(cur.lunch) : 0) + (cur.dinner ? Number(cur.dinner) : 0)
+                                    }, 0) || 0}
                                   </td>
                                 </>
                               )
@@ -800,9 +730,9 @@ function MealCalender({ meals }) {
                 </tr>
                 {
                   mealsInMonth.map(meal => {
-                    let breakfast = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.own?.breakfast === 1 ? "checked" : "";
-                    let lunch = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.own?.lunch === 1 ? "checked" : "";
-                    let dinner = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.own?.dinner === 1 ? "checked" : "";
+                    let breakfast = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.find(food => food.type === "own")?.breakfast === 1 ? "checked" : "";
+                    let lunch = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.find(food => food.type === "own")?.lunch === 1 ? "checked" : "";
+                    let dinner = meal.meals && meal.meals.find(m => m.userId === Number(selectedMember)) && meal.meals.find(m => m.userId === Number(selectedMember))?.details?.find(food => food.type === "own")?.dinner === 1 ? "checked" : "";
                     return (
                       <tr key={meal.id}>
                         <td key={meal.id}>{meal.date.split("-")[2]}</td>
@@ -850,79 +780,130 @@ function MealAssign({ meals, setMeals }) {
   useEffect(() => {
     const currentMonth = date.split("-")[0] + "-" + date.split("-")[1];
     setMembersInMonth(membersMonthWise.find(m => m.month === currentMonth)?.members || [])
-
-    // create a members array with id and name and isGuest
-    //const members = membersMonthWise.find(m => m.month === currentMonth)?.members || [];
-
-    // const membersWithIdAndName = meals.find(m => m.date === date)?.meals.map(m => {
-    //   return {
-    //     userId: m.userId,
-    //     name: members.find(member => member.id === m.userId),
-    //     isGuest: members.find(member => member.id === m.userId)
-    //   }
-    // })
-    // console.log(membersWithIdAndName)
   }, [date])
 
   function handleMealChange(data) {
-    const [userId, userType, food] = data.split(",");
-
-    //It can create new meal and also it can update the state of the last meal if it exists
-    const newMeals = [...meals];
-    const mealIndex = newMeals.findIndex(m => m.date === date);
-    const meal = newMeals[mealIndex];
-    //also check if the user is already in the meal
-    if (meal) {
-      if (meal.meals.find(m => m.userId === Number(userId))) {
-        const mealDetails = meal.meals.find(m => m.userId === Number(userId)).details;
-        mealDetails[userType][food] = mealDetails[userType][food] === 1 ? 0 : 1;
-      } else {
-        meal.meals.push({
-          userId: Number(userId),
-          meal: 1,
-          details: {
-            own: {
-              breakfast: 0,
-              lunch: 0,
-              dinner: 0
-            },
-            guest: [{
-              breakfast: 0,
-              lunch: 0,
-              dinner: 0
-            }]
-          }
-        })
-        meal.meals[meal.meals.length - 1].details[userType][food] = 1;
-      }
-    }
-    else {
-      const newMeal = {
-        id: date,
-        date: date,
-        meals: [
-          {
-            userId: Number(userId),
-            meal: 1,
-            details: {
-              own: {
+    const [userId, isOwn, food, name, guestId] = data.split(",");
+    setMeals(prev => {
+      //It can create new meal and also it can update the state of the last meal if it exists
+      const newMeals = [...prev];
+      const mealIndex = newMeals.findIndex(m => m.date === date);
+      const meal = newMeals[mealIndex];
+      //also check if the user is already in the meal
+      if (meal) {
+        if (meal.meals.find(m => m.userId === Number(userId))) {
+          const mealDetails = meal.meals.find(m => m.userId === Number(userId)).details;
+          if (isOwn === "true") {
+            if (mealDetails.find(m => m.type === "own")) {
+              mealDetails.find(m => m.type === "own")[food] = mealDetails.find(m => m.type === "own")[food] === 1 ? 0 : 1;
+            } else {
+              mealDetails.push({
+                type: "own",
                 breakfast: 0,
                 lunch: 0,
-                dinner: 0
-              },
-              guest: [{
+                dinner: 0,
+              })
+              mealDetails.find(m => m.type === "own")[food] = mealDetails.find(m => m.type === "own")[food] === 1 ? 0 : 1;
+            }
+          } else {
+            if (mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))) {
+              mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))[food] = mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))[food] === 1 ? 0 : 1;
+            } else {
+              mealDetails.push({
+                type: "guest",
+                name: name,
+                id: Number(guestId),
                 breakfast: 0,
                 lunch: 0,
-                dinner: 0
-              }]
+                dinner: 0,
+              })
+              mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))[food] = mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))[food] === 1 ? 0 : 1;
             }
           }
-        ]
+        } else {
+          if (isOwn === "true") {
+            let newData = {
+              userId: Number(userId),
+              meal: 1,
+              details: [
+                {
+                  type: "own",
+                  breakfast: 0,
+                  lunch: 0,
+                  dinner: 0,
+                },
+              ]
+            }
+            newData.details[0][food] = newData.details[0][food] === 1 ? 0 : 1;
+            meal.meals.push(newData)
+          } else {
+            let newData = {
+              userId: Number(userId),
+              meal: 1,
+              details: [
+                {
+                  type: "guest",
+                  name: name,
+                  id: Number(guestId),
+                  breakfast: 0,
+                  lunch: 0,
+                  dinner: 0,
+                },
+              ]
+            }
+            newData.details[0][food] = newData.details[0][food] === 1 ? 0 : 1;
+            meal.meals.push(newData)
+          }
+        }
+      } else {
+        if (isOwn === "true") {
+          let newData = {
+            id: date,
+            date: date,
+            meals: [
+              {
+                userId: Number(userId),
+                meal: 1,
+                details: [
+                  {
+                    type: "own",
+                    breakfast: 0,
+                    lunch: 0,
+                    dinner: 0,
+                  },
+                ]
+              }
+            ]
+          }
+          newData.meals[0]["details"][0][food] = newData.meals[0]["details"][0][food] === 1 ? 0 : 1;
+          newMeals.push(newData)
+        } else {
+          let newData = {
+            id: date,
+            date: date,
+            meals: [
+              {
+                userId: Number(userId),
+                meal: 1,
+                details: [
+                  {
+                    type: "guest",
+                    name: name,
+                    id: Number(guestId),
+                    breakfast: 0,
+                    lunch: 0,
+                    dinner: 0,
+                  },
+                ]
+              }
+            ]
+          }
+          newData.meals[0]["details"][0][food] = newData.meals[0]["details"][0][food] === 1 ? 0 : 1;
+          newMeals.push(newData)
+        }
       }
-      newMeal.meals[0].details[userType][food] = 1;
-      newMeals.push(newMeal)
-    }
-    setMeals(newMeals)
+      return newMeals;
+    })
   }
 
   const food = ["breakfast", "lunch", "dinner"]
@@ -937,7 +918,7 @@ function MealAssign({ meals, setMeals }) {
           <table>
             <tbody>
               <tr>
-                <th>Time</th>
+                <th>Name</th>
                 <th>Breakfast</th>
                 <th>Lunch</th>
                 <th>Dinner</th>
@@ -945,41 +926,74 @@ function MealAssign({ meals, setMeals }) {
               {
 
                 membersInMonth.map(member => {
+                  let memberWithGuest = [...meals].find(m => m.date === date)?.meals?.find(m => m.userId === member)?.details || [];
 
-                  const foodData = [
-                    {
-                      name: "breakfast",
-                      isChecked: meals.find(m => m.date === date)?.meals.find(m => m.userId === member)?.details?.own?.breakfast === 1 ? "checked" : ""
-                    },
-                    {
-                      name: "lunch",
-                      isChecked: meals.find(m => m.date === date)?.meals.find(m => m.userId === member)?.details?.own?.lunch === 1 ? "checked" : ""
-                    },
-                    {
-                      name: "dinner",
-                      isChecked: meals.find(m => m.date === date)?.meals.find(m => m.userId === member)?.details?.own?.dinner === 1 ? "checked" : ""
+                  const ownerName = members.find(mbr => mbr.id === member).name;
+
+                  memberWithGuest = memberWithGuest.map(m => {
+                    const name = (m.type === "own") ? ownerName : m.name;
+                    const id = (m.type === "own") ? member : m.id;
+                    const isOwn = m.type === "own";
+                    return {
+                      name,
+                      id,
+                      isOwn,
+                      food: [
+                        {
+                          name: "breakfast",
+                          isChecked: m.breakfast === 1 ? "checked" : ""
+                        },
+                        {
+                          name: "lunch",
+                          isChecked: m.lunch === 1 ? "checked" : ""
+                        },
+                        {
+                          name: "dinner",
+                          isChecked: m.dinner === 1 ? "checked" : ""
+                        }
+                      ]
                     }
-                  ] || [{ name: "breakfast", isChecked: 0 }, { name: "lunch", isChecked: 0 }, { name: "dinner", isChecked: 0 }];
+                  });
 
-                  return (
-                    <tr key={member.id}>
-                      <td key={member.id}>{members.find(mbr => mbr.id === member).name}</td>
+                  memberWithGuest = memberWithGuest.length === 0 ? [{
+                    name: ownerName,
+                    id: member,
+                    isOwn: true,
+                    food: [
+                      {
+                        name: "breakfast",
+                        isChecked: 0
+                      },
+                      {
+                        name: "lunch",
+                        isChecked: 0
+                      },
+                      {
+                        name: "dinner",
+                        isChecked: 0
+                      }
+                    ]
+                  }] : memberWithGuest;
+
+                  return memberWithGuest.map(x => (
+                    <tr key={x.id} >
+                      <td key={x.id}>{x.isOwn ? x.name : x.name + "(" + ownerName + ")"}</td>
                       {
                         food.map(f => {
                           return (
                             <td key={f}>
                               <Checkbox
-                                key={member + ",own," + f}
+                                key={member + "," + x.isOwn + "," + f + "," + x.name + "," + x.id}
                                 data={f}
                                 type="checkbox"
-                                value={member + ",own," + f}
-                                isChecked={foodData.find(fd => fd.name === f).isChecked}
+                                value={member + "," + x.isOwn + "," + f + "," + x.name + "," + x.id}
+                                isChecked={x.food.find(fd => fd.name === f).isChecked}
                                 handleMealChange={handleMealChange} />
                             </td>
                           )
                         })
                       }
-                    </tr>
+                    </tr>)
                   )
                 })
               }

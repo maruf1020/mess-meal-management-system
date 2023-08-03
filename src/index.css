@@ -245,6 +245,11 @@ td:first-child {
   font-weight: 700;
 }
 
+.assign-meals.box tr>th:first-child,
+.assign-meals.box tr>td:first-child {
+  text-align: left;
+}
+
 tr:hover:not(:first-child),
 .short-summary tr:hover {
   background: var(--v-white-base);
@@ -373,7 +378,7 @@ input[type="checkbox"] {
   border: 2px solid var(--v-grey-lighten5);
   -webkit-appearance: none;
   appearance: none;
-  margin: 0;
+  margin: 0 auto;
   font: inherit;
   width: 35px;
   height: 35px;

@@ -611,6 +611,11 @@ const mealsData = [
 
 const membersMonthWise = [
   {
+    id: "2023-06",
+    month: "2023-06",
+    members: [101, 103]
+  },
+  {
     id: "2023-07",
     month: "2023-07",
     members: [101, 104]
@@ -845,6 +850,18 @@ function MealAssign({ meals, setMeals }) {
   useEffect(() => {
     const currentMonth = date.split("-")[0] + "-" + date.split("-")[1];
     setMembersInMonth(membersMonthWise.find(m => m.month === currentMonth)?.members || [])
+
+    // create a members array with id and name and isGuest
+    //const members = membersMonthWise.find(m => m.month === currentMonth)?.members || [];
+
+    // const membersWithIdAndName = meals.find(m => m.date === date)?.meals.map(m => {
+    //   return {
+    //     userId: m.userId,
+    //     name: members.find(member => member.id === m.userId),
+    //     isGuest: members.find(member => member.id === m.userId)
+    //   }
+    // })
+    // console.log(membersWithIdAndName)
   }, [date])
 
   function handleMealChange(data) {

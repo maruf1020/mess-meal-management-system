@@ -289,6 +289,10 @@ h4 {
   padding: 1rem 0;
 }
 
+h4.add-guest-title {
+  margin-top: 20px;
+}
+
 .navigation {
   display: flex;
   align-items: center;
@@ -390,6 +394,7 @@ input[type="checkbox"] {
   transform: translateY(-0.075em);
   display: grid;
   place-content: center;
+  cursor: pointer;
 }
 
 /* check box :checked  */
@@ -407,7 +412,11 @@ input[type="checkbox"]::before {
   transition: 120ms transform ease-in-out;
   /* box-shadow: inset 1em 1em var(--dark-primary-color); */
   /* Windows High Contrast Mode */
-  background-color: CanvasText;
+  background-color: var(--v-grey-darken3);
+}
+
+input[type="checkbox"]:disabled::before {
+  background-color: var(--v-grey-lighten3);
 }
 
 input[type="checkbox"]:checked::before {
@@ -417,7 +426,7 @@ input[type="checkbox"]:checked::before {
 input[type="checkbox"]:disabled {
   /* --dark-primary-color: var(--divider-color); */
   /* color: var(--divider-color); */
-  cursor: not-allowed;
+  cursor: initial;
 }
 
 /* https://moderncss.dev/pure-css-custom-checkbox-style/ */

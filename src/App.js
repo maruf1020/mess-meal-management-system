@@ -999,7 +999,7 @@ function MealAssign({ meals, setMeals }) {
               }
             </tbody>
           </table>
-          <button className="add-guest-button button">&#10009; Add Guest</button>
+          <h4 className="add-guest-title">Add your Guest</h4>
           <form className="add-guest-wrapper">
             <select>
               <option value="0">Guest Owner</option>

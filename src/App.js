@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const members = [
+const membersData = [
   {
     id: 101,
     fullName: "Maruf Billah",
@@ -592,12 +592,23 @@ function Header() {
 }
 
 function Main() {
-  const [meals, setMeals] = useState(mealsData);
+  const [meals, setMeals] = useState([]);
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    setMeals(mealsData);
+    setMembers(membersData);
+  }, [])
+
   return (
     <main>
       <LabelContainer />
-      <MealCalender meals={meals} />
-      <MealAssign setMeals={setMeals} meals={meals} />
+      {members.length > 0 &&
+        <>
+          <MealCalender meals={meals} members={members} />
+          <MealAssign setMeals={setMeals} meals={meals} members={members} />
+        </>
+      }
       <ShortSummary />
       <MarketingHistory />
       <StoreMoneyHistory />
@@ -625,7 +636,7 @@ function LabelContainer() {
   );
 }
 
-function MealCalender({ meals }) {
+function MealCalender({ meals, members }) {
 
   const [calenderMonth, setCalenderDate] = useState(new Date().toISOString().slice(0, 7));
   const [membersInMonth, setMembersInMonth] = useState([]);
@@ -772,7 +783,7 @@ function Checkbox({ handleMealChange, isChecked, value }) {
   )
 }
 
-function MealAssign({ meals, setMeals }) {
+function MealAssign({ meals, setMeals, members }) {
 
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [membersInMonth, setMembersInMonth] = useState([]);

@@ -127,6 +127,12 @@ input {
   font-family: 'Gaegu', cursive;
 } */
 
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 1px solid var(--v-primary-base);
+}
+
 .App {
   display: grid;
   grid-template-rows: auto 1fr auto;

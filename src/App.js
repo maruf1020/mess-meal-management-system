@@ -776,11 +776,23 @@ function MealAssign({ meals, setMeals }) {
 
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [membersInMonth, setMembersInMonth] = useState([]);
+  const [selectedMember, setSelectedMember] = useState({ id: "guest", name: "Guest Owner" });
+  const [guestName, setGuestName] = useState("");
+  const [guestAddError, setGuestAddError] = useState(false);
 
   useEffect(() => {
     const currentMonth = date.split("-")[0] + "-" + date.split("-")[1];
     setMembersInMonth(membersMonthWise.find(m => m.month === currentMonth)?.members || [])
   }, [date])
+
+
+  const guest = ({ id: "guest", name: "Guest Owner" })
+  const membersData = [guest, ...membersInMonth.map(member => {
+    return {
+      id: member,
+      name: members.find(m => m.id === member).name,
+    }
+  })]
 
   function handleMealChange(data) {
     const [userId, isOwn, food, name, guestId] = data.split(",");
@@ -906,6 +918,53 @@ function MealAssign({ meals, setMeals }) {
     })
   }
 
+  function handleAddGuest(e) {
+    e.preventDefault();
+
+    if (selectedMember === "guest" || guestName === "") {
+      setGuestAddError(true);
+      setTimeout(() => {
+        setGuestAddError(false);
+      }, 3000);
+    } else {
+      setMeals(prev => {
+        let newMeals = [...prev].find(m => m.date === date);
+
+        if ([...prev].find(m => m.date === date) === undefined) {
+          newMeals = {
+            id: date,
+            date: date,
+            meals: []
+          }
+        }
+
+        if (newMeals.meals.find(m => m.userId === Number(selectedMember)) === undefined) {
+          newMeals.meals.push({
+            userId: Number(selectedMember),
+            meal: 1,
+            details: []
+          })
+        }
+
+        const newMealData = {
+          breakfast: 0,
+          lunch: 0,
+          dinner: 0,
+          type: "guest",
+          name: guestName,
+          id: Math.floor(Math.random() * 1000000000000000000),
+        }
+
+        newMeals.meals.find(m => m.userId === Number(selectedMember)).details.push(newMealData);
+
+        setGuestName("");
+        setSelectedMember({ id: "guest", name: "Guest Owner" });
+
+        return [...prev].filter(m => m.date !== date).concat(newMeals);
+      })
+    }
+  }
+
   const food = ["breakfast", "lunch", "dinner"]
 
   return (
@@ -975,6 +1034,34 @@ function MealAssign({ meals, setMeals }) {
                     ]
                   }] : memberWithGuest;
 
+                  memberWithGuest = memberWithGuest.find(m => m.isOwn === true) ? memberWithGuest : memberWithGuest.concat({
+                    name: ownerName,
+                    id: member,
+                    isOwn: true,
+                    food: [
+                      {
+                        name: "breakfast",
+                        isChecked: 0
+                      },
+                      {
+                        name: "lunch",
+                        isChecked: 0
+                      },
+                      {
+                        name: "dinner",
+                        isChecked: 0
+                      }
+                    ]
+                  });
+
+                  memberWithGuest = memberWithGuest.sort((a, b) => {
+                    if (a.isOwn) {
+                      return -1;
+                    } else {
+                      return 1;
+                    }
+                  })
+
                   return memberWithGuest.map(x => (
                     <tr key={x.id} >
                       <td key={x.id}>{x.isOwn ? x.name : x.name + "(" + ownerName + ")"}</td>
@@ -1001,16 +1088,14 @@ function MealAssign({ meals, setMeals }) {
           </table>
           <h4 className="add-guest-title">Add your Guest</h4>
           <form className="add-guest-wrapper">
-            <select>
-              <option value="0">Guest Owner</option>
-              <option value="maruf">Maruf</option>
-              <option value="siam">Siam</option>
-              <option value="miraj">Miraj</option>
-              <option value="saif">Saif</option>
-            </select>
-            <input type="text" placeholder="Guest Name" />
-            <button className="button" type="submit">&#10009; Add</button>
+            <SelectMembers
+              members={membersData}
+              onChangeMember={setSelectedMember}
+              selectedMember={selectedMember} />
+            <input type="text" placeholder="Guest Name" value={guestName} onChange={(e) => setGuestName(e.target.value)} />
+            <button className="button" type="submit" onClick={handleAddGuest}>&#10009; Add</button>
           </form>
+          {guestAddError && <p className="no-data-found">Please select a member and put a guest name</p>}
         </>)}
     </div>
   )

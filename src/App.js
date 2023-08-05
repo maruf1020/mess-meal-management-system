@@ -48,7 +48,7 @@ const membersData = [
   },
   {
     id: 106,
-    fullName: "Rakib Hasan",
+    fullName: "Hasan Miya",
     name: "Rakib",
     email: "rakib@gmail.com",
     phone: "01700000000",
@@ -75,7 +75,7 @@ const membersData = [
   },
 ];
 
-const marketing = [
+const marketingData = [
   {
     id: 201,
     date: "2023-08-01",
@@ -537,7 +537,7 @@ const mealsData = [
   },
 ];
 
-const membersMonthWise = [
+const membersMonthWiseData = [
   {
     id: "2023-06",
     month: "2023-06",
@@ -555,18 +555,21 @@ const membersMonthWise = [
   }
 ]
 
-const storeMoney = [
+const storeMoneyData = [
   {
+    id: "2023-08-01",
     userId: 101,
     amount: 1000,
     date: "2023-08-01",
   },
   {
+    id: "2023-08-01",
     userId: 102,
     amount: 1000,
     date: "2023-08-01",
   },
   {
+    id: "2023-08-01",
     userId: 103,
     amount: 1000,
     date: "2023-08-01",
@@ -592,27 +595,32 @@ function Header() {
 }
 
 function Main() {
-  const [meals, setMeals] = useState([]);
-  const [members, setMembers] = useState([]);
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
-  const [membersInMonth, setMembersInMonth] = useState([]);
-
+  const [meals, setMeals] = useState([]); //meals data
+  const [members, setMembers] = useState([]); //members data
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10)); //current date
+  const [storeMoney, setStoreMoney] = useState([]); //store money data
+  const [marketingHistory, setMarketingHistory] = useState([]); //marketing history data
+  const [membersMonthWise, setMembersMonthWise] = useState([]); //members data array month wise
+  const [membersInMonth, setMembersInMonth] = useState([]); //members data for a specific month
 
   useEffect(() => {
     const currentMonth = date.split("-")[0] + "-" + date.split("-")[1];
     setMembersInMonth(membersMonthWise.find(m => m.month === currentMonth)?.members || [])
-  }, [date])
+  }, [date, membersMonthWise])
 
   useEffect(() => {
     setMeals(mealsData);
     setMembers(membersData);
+    setStoreMoney(storeMoneyData);
+    setMarketingHistory(marketingData);
+    setMembersMonthWise(membersMonthWiseData);
   }, [])
 
   return (
     <main>
       {(members.length > 0 && meals.length > 0 && membersInMonth.length > 0) ?
         <>
-          <LabelContainer />
+          <LabelContainer members={members} setMembers={setMembers} membersMonthWise={membersMonthWise} setMembersMonthWise={setMembersMonthWise} marketingHistory={marketingHistory} setMarketingHistory={setMarketingHistory} storeMoney={storeMoney} setStoreMoney={setStoreMoney} />
           <MealCalender meals={meals} members={members} />
           <MealAssign setMeals={setMeals} meals={meals} members={members} date={date} setDate={setDate} membersInMonth={membersInMonth} />
           <ShortSummary />
@@ -633,15 +641,311 @@ function Footer() {
   )
 }
 
-function LabelContainer() {
+function Popup({ setShowPopup, children, headerText }) {
   return (
-    <div className="label-container box">
-      <button className="button">Add Member</button>
-      <button className="button">All Members</button>
-      <button className="button">Members in This Month</button>
-      <button className="button">Add Bazar</button>
-      <button className="button">Add Money</button>
+    <div className="pop-up">
+      <div className="pop-up-overlay" onClick={() => setShowPopup(false)}></div>
+      <div className="pop-up-content">
+        <div className="pop-up-header">
+          <h3>{headerText}</h3>
+          <button className="button pop-up-close-button" onClick={() => setShowPopup(false)}>&#10006;</button>
+        </div>
+        <div className="pop-up-body">
+          {children}
+        </div>
+      </div>
     </div>
+  )
+}
+
+function Member({ member, members, setMembers, serial }) {
+  const [editPopupShow, setEditPopupShow] = useState(false);
+
+  function handleEdit() {
+    setEditPopupShow(true);
+  }
+
+  function handleDelete() {
+    setMembers([...members].filter(m => m.id !== member.id));
+  }
+
+  return (
+    <div className="member">
+      <div className="member-info">
+        <p style={{ fontWeight: "bold" }}>{Number(serial) < 10 ? "0" + serial : serial}</p>
+        <p>{member.fullName}</p>
+      </div>
+      <div className="member-action-buttons">
+        <button className="button" onClick={handleDelete}>&#10006;</button>
+        <button className="button" onClick={handleEdit}>&#9998;</button>
+        {/* member.phone:: click to call*/}
+        <a className="button" href={`tel:${member.phone}`}>&#9990;</a>
+        {/* member.email  */}
+        <a className="button" href={`mailto:${member.email}`}>&#9993;</a>
+      </div>
+      {editPopupShow && (
+        <Popup setShowPopup={setEditPopupShow} headerText="Update Member">
+          <AddOrUpdateMember members={members} setMembers={setMembers} memberInfo={member} type="update" setPopUp={setEditPopupShow} />
+        </Popup>
+      )}
+    </div>
+  )
+}
+function AllMembers({ members, setMembers }) {
+  return (
+    <div className="all-members">
+      {
+        members.map((member, key) => <Member key={member.id} member={member} members={members} setMembers={setMembers} serial={key + 1} />)
+      }
+    </div>
+  )
+}
+
+function Input({ type, name, id, placeholder, value, setValue }) {
+  return (
+    <input type={type} name={name} id={id} placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
+  )
+
+}
+
+function FromGroup({ label, type, name, id, placeholder, value, setValue, error, errorText }) {
+  return (
+    <div className="form-group">
+      <label htmlFor={id}>{label}</label>
+      <Input type={type} name={name} id={id} placeholder={placeholder} value={value} setValue={setValue} />
+      {error && <p className="error-text">{errorText}</p>}
+    </div>
+  )
+}
+
+function AddOrUpdateMember({ members, setMembers, memberInfo, type, setPopUp }) {
+
+  const [id, setId] = useState(memberInfo?.id || null);
+  const [fullName, setFullName] = useState(memberInfo?.fullName || "");
+  const [name, setName] = useState(memberInfo?.name || "");
+  const [email, setEmail] = useState(memberInfo?.email || "");
+  const [phone, setPhone] = useState(memberInfo?.phone || "");
+  const [address, setAddress] = useState(memberInfo?.address || "");
+  const [image, setImage] = useState(memberInfo?.image || "");
+
+  const [fullNameError, setFullNameError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [addressError, setAddressError] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
+  const [fullNameErrorText, setFullNameErrorText] = useState("");
+  const [nameErrorText, setNameErrorText] = useState("");
+  const [emailErrorText, setEmailErrorText] = useState("");
+  const [phoneErrorText, setPhoneErrorText] = useState("");
+  const [addressErrorText, setAddressErrorText] = useState("");
+  const [imageErrorText, setImageErrorText] = useState("");
+
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    // validation
+    if (fullName === "" || fullName.length < 7 || fullName.length > 50 || !fullName.match(/^[a-zA-Z ]+$/)) {
+      if (fullName === "") {
+        setFullNameErrorText("Full Name is required");
+      } else if (fullName.length < 7) {
+        setFullNameErrorText("Full Name must be at least 7 characters");
+      } else if (fullName.length > 50) {
+        setFullNameErrorText("Full Name must be less than 50 characters");
+      } else if (!fullName.match(/^[a-zA-Z ]+$/)) {
+        setFullNameErrorText("Full Name must be letters only");
+      }
+      setFullNameError(true);
+    } else {
+      setFullNameError(false);
+    }
+    if (name === "" || name.length < 3 || name.length > 50 || !name.match(/^[a-zA-Z ]+$/)) {
+      if (name === "") {
+        setNameErrorText("Name is required");
+      } else if (name.length < 3) {
+        setNameErrorText("Name must be at least 3 characters");
+      } else if (name.length > 50) {
+        setNameErrorText("Name must be less than 50 characters");
+      } else if (!name.match(/^[a-zA-Z ]+$/)) {
+        setNameErrorText("Name must be letters only");
+      }
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+    if (email === "" || !email.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)) {
+      if (email === "") {
+        setEmailErrorText("Email is required");
+      } else if (!email.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)) {
+        setEmailErrorText("Email is not valid");
+      }
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+    if (phone === "" || !phone.match(/^[0-9]+$/)) {
+      if (phone === "") {
+        setPhoneErrorText("Phone is required");
+      } else if (!phone.match(/^[0-9]+$/)) {
+        setPhoneErrorText("Phone must be numbers only");
+      }
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+    if (address === "" || address.length < 20 || address.length > 150) {
+      if (address === "") {
+        setAddressErrorText("Address is required");
+      } else if (address.length < 20) {
+        setAddressErrorText("Address must be at least 20 characters");
+      } else if (address.length > 150) {
+        setAddressErrorText("Address must be less than 150 characters");
+      }
+      setAddressError(true);
+    } else {
+      setAddressError(false);
+    }
+    if (image === "" || !image.match(/\.(jpg|jpeg|png|gif)$/)) {
+      if (image === "") {
+        setImageErrorText("Image is required");
+      } else if (!image.match(/\.(jpg|jpeg|png|gif)$/)) {
+        setImageErrorText("Image must be a valid image");
+      }
+      setImageError(true);
+    } else {
+      setImageError(false);
+    }
+
+
+    if (fullName !== "" && fullName.length >= 7 && fullName.length <= 50 && fullName.match(/^[a-zA-Z ]+$/) && name !== "" && name.length >= 3 && name.length <= 50 && name.match(/^[a-zA-Z ]+$/) && email !== "" && email.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/) && phone !== "" && phone.match(/^[0-9]+$/) && address !== "" && address.length >= 20 && address.length <= 150 && image !== "" && image.match(/\.(jpg|jpeg|png|gif)$/)) {
+      if (type === "add") {
+        setMembers(curr => {
+          const newMember = {
+            id: new Date().getTime(),
+            fullName,
+            name,
+            email,
+            phone,
+            address,
+            image
+          }
+          return [...curr, newMember];
+        })
+      } else if (type === "update") {
+        setMembers(curr => {
+          const updatedMembers = curr.map(member => {
+            if (member.id === id) {
+              return {
+                ...member,
+                fullName,
+                name,
+                email,
+                phone,
+                address,
+                image
+              }
+            }
+            return member;
+          })
+          return updatedMembers;
+        })
+      }
+
+      setFullName("");
+      setName("");
+      setEmail("");
+      setPhone("");
+      setAddress("");
+      setImage("");
+
+      setPopUp(false);
+    }
+  }
+
+  return (
+    <div className="add-or-update-members">
+      <form>
+        <FromGroup label="Full Name" type="text" name="fullName" id="fullName" placeholder="Full Name" value={fullName} setValue={setFullName} error={fullNameError} errorText={fullNameErrorText} />
+        <FromGroup label="Name" type="text" name="name" id="name" placeholder="Name" value={name} setValue={setName} error={nameError} errorText={nameErrorText} />
+        <FromGroup label="Email" type="email" name="email" id="email" placeholder="Email" value={email} setValue={setEmail} error={emailError} errorText={emailErrorText} />
+        <FromGroup label="Phone" type="tel" name="phone" id="phone" placeholder="Phone" value={phone} setValue={setPhone} error={phoneError} errorText={phoneErrorText} />
+        <FromGroup label="Address" type="text" name="address" id="address" placeholder="Address" value={address} setValue={setAddress} error={addressError} errorText={addressErrorText} />
+        <FromGroup label="Image" type="url" name="image" id="image" placeholder="Image" value={image} setValue={setImage} error={imageError} errorText={imageErrorText} />
+        <button type="submit" value="Submit" className="button" onClick={handleSubmit}>{type === "update" ? "Update Member" : "Add Member"}</button>
+      </form>
+    </div>
+  )
+}
+
+function MembersInMonth({ membersMonthWise, setMembersMonthWise }) {
+  return (
+    <div className="all-members">Members in Month</div>
+  )
+}
+
+function AddBazar({ marketingHistory, setMarketingHistory }) {
+  return (
+    <div className="all-members">Add Bazar</div>
+  )
+}
+
+function AddMoney({ storeMoney, setStoreMoney }) {
+  return (
+    <div className="all-members">Add Money</div>
+  )
+}
+
+function LabelContainer({ members, setMembers, membersMonthWise, setMembersMonthWise, marketingHistory, setMarketingHistory, storeMoney, setStoreMoney }) {
+  const [showPopup, setShowPopup] = useState(false);
+  const [component, setComponent] = useState("allMembers");
+  const [headerText, setHeaderText] = useState("Pop Up Header");
+
+  function handleAllMembers() {
+    setComponent("allMembers");
+    setHeaderText("All Members");
+    setShowPopup(true);
+  }
+  function handleAddMembers() {
+    setComponent("addMembers");
+    setHeaderText("Add Member");
+    setShowPopup(true);
+  }
+  function handleMembersInMonth() {
+    setComponent("membersInMonth");
+    setHeaderText("Members in This Month");
+    setShowPopup(true);
+  }
+  function handleAddBazar() {
+    setComponent("addBazar");
+    setHeaderText("Add Bazar");
+    setShowPopup(true);
+  }
+  function handleAddMoney() {
+    setComponent("addMoney");
+    setHeaderText("Add Money");
+    setShowPopup(true);
+  }
+
+  return (
+    <>
+      <div className="label-container box">
+        <button className="button" onClick={handleAllMembers}>All Members</button>
+        <button className="button" onClick={handleAddMembers}>Add Member</button>
+        <button className="button" onClick={handleMembersInMonth}>Members in This Month</button>
+        <button className="button" onClick={handleAddBazar}>Add Bazar</button>
+        <button className="button" onClick={handleAddMoney}>Add Money</button>
+        {showPopup && (
+          <Popup setShowPopup={setShowPopup} headerText={headerText}>
+            {component === "allMembers" && <AllMembers members={members} setMembers={setMembers} />}
+            {component === "addMembers" && <AddOrUpdateMember members={members} setMembers={setMembers} memberInfo={{}} type="add" setPopUp={setShowPopup} />}
+            {component === "membersInMonth" && <MembersInMonth membersMonthWise={membersMonthWise} setMembersMonthWise={setMembersMonthWise} />}
+            {component === "addBazar" && <AddBazar marketingHistory={marketingHistory} setMarketingHistory={setMarketingHistory} />}
+            {component === "addMoney" && <AddMoney storeMoney={storeMoney} setStoreMoney={setStoreMoney} />}
+          </Popup>)}
+      </div>
+    </>
   );
 }
 
@@ -775,23 +1079,6 @@ function MealCalender({ meals, members }) {
   )
 }
 
-function Checkbox({ handleMealChange, isChecked, value }) {
-  const [checked, setChecked] = useState(isChecked)
-
-  useEffect(() => {
-    setChecked(isChecked)
-  }, [isChecked])
-
-  return (
-    <input type="checkbox" checked={checked} value={value} key={value}
-      onChange={e => {
-        setChecked(e.target.checked)
-        handleMealChange(e.target.value)
-      }}
-    />
-  )
-}
-
 function MealAssign({ meals, setMeals, members, date, setDate, membersInMonth }) {
 
   const [selectedMember, setSelectedMember] = useState({ id: "guest", name: "Guest Owner" });
@@ -814,7 +1101,6 @@ function MealAssign({ meals, setMeals, members, date, setDate, membersInMonth })
       const mealIndex = newMeals.findIndex(m => m.date === date);
       const meal = newMeals[mealIndex];
       //also check if the user is already in the meal
-      console.log(prev)
       if (meal) {
         if (meal.meals.find(m => m.userId === Number(userId))) {
 
@@ -834,7 +1120,6 @@ function MealAssign({ meals, setMeals, members, date, setDate, membersInMonth })
           } else {
             if (mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))) {
               mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))[food] = mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))[food] === 1 ? 0 : 1;
-              console.log("mealDetails", mealDetails.find(m => m.type === "guest" && m.id === Number(guestId)))
             } else {
               mealDetails.push({
                 type: "guest",
@@ -1393,5 +1678,24 @@ function SelectMembers({ members, onChangeMember, selectedMember }) {
     <select value={selectedMember.id} onChange={handleMemberChange}>
       {members.map(member => <option key={member.id} value={member.id}>{member.name}</option>)}
     </select>
+  )
+}
+
+
+//CheckBox
+function Checkbox({ handleMealChange, isChecked, value }) {
+  const [checked, setChecked] = useState(isChecked)
+
+  useEffect(() => {
+    setChecked(isChecked)
+  }, [isChecked])
+
+  return (
+    <input type="checkbox" checked={checked} value={value} key={value}
+      onChange={e => {
+        setChecked(e.target.checked)
+        handleMealChange(e.target.value)
+      }}
+    />
   )
 }

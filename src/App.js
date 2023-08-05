@@ -594,6 +594,14 @@ function Header() {
 function Main() {
   const [meals, setMeals] = useState([]);
   const [members, setMembers] = useState([]);
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [membersInMonth, setMembersInMonth] = useState([]);
+
+
+  useEffect(() => {
+    const currentMonth = date.split("-")[0] + "-" + date.split("-")[1];
+    setMembersInMonth(membersMonthWise.find(m => m.month === currentMonth)?.members || [])
+  }, [date])
 
   useEffect(() => {
     setMeals(mealsData);
@@ -602,17 +610,18 @@ function Main() {
 
   return (
     <main>
-      <LabelContainer />
-      {members.length > 0 &&
+      {(members.length > 0 && meals.length > 0 && membersInMonth.length > 0) ?
         <>
+          <LabelContainer />
           <MealCalender meals={meals} members={members} />
-          <MealAssign setMeals={setMeals} meals={meals} members={members} />
+          <MealAssign setMeals={setMeals} meals={meals} members={members} date={date} setDate={setDate} membersInMonth={membersInMonth} />
+          <ShortSummary />
+          <MarketingHistory />
+          <StoreMoneyHistory />
+          <FinalSummary />
         </>
+        : <p className="main-loading">Loading...</p>
       }
-      <ShortSummary />
-      <MarketingHistory />
-      <StoreMoneyHistory />
-      <FinalSummary />
     </main>)
 }
 
@@ -658,7 +667,7 @@ function MealCalender({ meals, members }) {
     return [...meals].find(meal => meal.date === day) ? [...meals].find(meal => meal.date === day) : { id: day, date: day, meals: [] }
   });
 
-  let users = [...meals]
+  const users = [...meals]
     .filter(meal => meal.id.includes(calenderMonth))
     .map(meal => {
       return meal.meals.map(m => m.userId)
@@ -783,19 +792,11 @@ function Checkbox({ handleMealChange, isChecked, value }) {
   )
 }
 
-function MealAssign({ meals, setMeals, members }) {
+function MealAssign({ meals, setMeals, members, date, setDate, membersInMonth }) {
 
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
-  const [membersInMonth, setMembersInMonth] = useState([]);
   const [selectedMember, setSelectedMember] = useState({ id: "guest", name: "Guest Owner" });
   const [guestName, setGuestName] = useState("");
   const [guestAddError, setGuestAddError] = useState(false);
-
-  useEffect(() => {
-    const currentMonth = date.split("-")[0] + "-" + date.split("-")[1];
-    setMembersInMonth(membersMonthWise.find(m => m.month === currentMonth)?.members || [])
-  }, [date])
-
 
   const guest = ({ id: "guest", name: "Guest Owner" })
   const membersData = [guest, ...membersInMonth.map(member => {
@@ -813,8 +814,10 @@ function MealAssign({ meals, setMeals, members }) {
       const mealIndex = newMeals.findIndex(m => m.date === date);
       const meal = newMeals[mealIndex];
       //also check if the user is already in the meal
+      console.log(prev)
       if (meal) {
         if (meal.meals.find(m => m.userId === Number(userId))) {
+
           const mealDetails = meal.meals.find(m => m.userId === Number(userId)).details;
           if (isOwn === "true") {
             if (mealDetails.find(m => m.type === "own")) {
@@ -831,6 +834,7 @@ function MealAssign({ meals, setMeals, members }) {
           } else {
             if (mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))) {
               mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))[food] = mealDetails.find(m => m.type === "guest" && m.id === Number(guestId))[food] === 1 ? 0 : 1;
+              console.log("mealDetails", mealDetails.find(m => m.type === "guest" && m.id === Number(guestId)))
             } else {
               mealDetails.push({
                 type: "guest",
@@ -932,7 +936,7 @@ function MealAssign({ meals, setMeals, members }) {
   function handleAddGuest(e) {
     e.preventDefault();
 
-    if (selectedMember === "guest" || guestName === "") {
+    if (selectedMember.id === "guest" || guestName === "") {
       setGuestAddError(true);
       setTimeout(() => {
         setGuestAddError(false);
@@ -1097,7 +1101,7 @@ function MealAssign({ meals, setMeals, members }) {
               }
             </tbody>
           </table>
-          <h4 className="add-guest-title">Add your Guest</h4>
+          <h4 className="add-guest-title">Add a Guest</h4>
           <form className="add-guest-wrapper">
             <SelectMembers
               members={membersData}
@@ -1381,7 +1385,6 @@ function DateInput({ date, onChange }) {
 
 //Select Members
 function SelectMembers({ members, onChangeMember, selectedMember }) {
-
   function handleMemberChange(e) {
     onChangeMember(e.target.value)
   }

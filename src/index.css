@@ -133,6 +133,10 @@ select:focus {
   outline: 1px solid var(--v-primary-base);
 }
 
+button:focus {
+  outline: 1px solid var(--v-black-base);
+}
+
 .App {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -144,6 +148,7 @@ select:focus {
 
 h1 {
   font-family: 'Street College', sans-serif;
+  /* font-family: Nunito Sans, sans-serif; */
   font-size: 4rem;
   font-weight: 400;
   margin: 0;
@@ -185,6 +190,15 @@ main>*:last-child {
   grid-row: 6;
 }
 
+main>.main-loading {
+  grid-column: 1 / span 10;
+  grid-row: 1 / span 10;
+  align-self: center;
+  justify-self: center;
+  font-size: 50px;
+  text-transform: lowercase;
+}
+
 .box {
   background: var(--v-white-base);
   padding: 16px 24px;
@@ -212,9 +226,8 @@ main>*:last-child {
 .label-container button {
   border: none;
   background: none;
-  outline: none;
   cursor: pointer;
-  padding: unset;
+  padding: 0 10px;
   font-size: 1rem;
   font-weight: 700;
   color: var(--v-white-base);
@@ -270,6 +283,7 @@ tr:hover:not(:first-child),
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  margin-bottom: 25px;
 }
 
 .add-guest-wrapper>* {

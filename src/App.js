@@ -641,9 +641,9 @@ function Footer() {
   )
 }
 
-function Popup({ setShowPopup, children, headerText }) {
+function Popup({ setShowPopup, children, headerText, className }) {
   return (
-    <div className="pop-up">
+    <div className={`pop-up ${className ? className : ""}`}>
       <div className="pop-up-overlay" onClick={() => setShowPopup(false)}></div>
       <div className="pop-up-content">
         <div className="pop-up-header">
@@ -880,8 +880,11 @@ function AddOrUpdateMember({ members, setMembers, memberInfo, type, setPopUp }) 
 }
 
 function MembersInMonth({ membersMonthWise, setMembersMonthWise }) {
+  const [calenderMonth, setCalenderDate] = useState(new Date().toISOString().slice(0, 7));
   return (
-    <div className="all-members">Members in Month</div>
+    <div className="all-members">
+      <MonthNavigation calenderMonth={calenderMonth} setCalenderDate={setCalenderDate} />
+    </div>
   )
 }
 
@@ -937,7 +940,7 @@ function LabelContainer({ members, setMembers, membersMonthWise, setMembersMonth
         <button className="button" onClick={handleAddBazar}>Add Bazar</button>
         <button className="button" onClick={handleAddMoney}>Add Money</button>
         {showPopup && (
-          <Popup setShowPopup={setShowPopup} headerText={headerText}>
+          <Popup setShowPopup={setShowPopup} headerText={headerText} className={component === "membersInMonth" ? "popup-members-in-month" : ""}>
             {component === "allMembers" && <AllMembers members={members} setMembers={setMembers} />}
             {component === "addMembers" && <AddOrUpdateMember members={members} setMembers={setMembers} memberInfo={{}} type="add" setPopUp={setShowPopup} />}
             {component === "membersInMonth" && <MembersInMonth membersMonthWise={membersMonthWise} setMembersMonthWise={setMembersMonthWise} />}
@@ -994,7 +997,7 @@ function MealCalender({ meals, members }) {
   return (
     <div className="meal-calender box">
       <h3>Meal Calender</h3>
-      <MonthNavigation
+      <MonthNavigationWithMemberSelection
         calenderMonth={calenderMonth}
         setCalenderDate={setCalenderDate}
         membersInMonth={membersInMonth}
@@ -1538,8 +1541,8 @@ function FinalSummary() {
 }
 
 
-// Month Navigation
-function MonthNavigation({ calenderMonth, setCalenderDate, membersInMonth, selectedMember, setSelectedMember }) {
+// Month Navigation with member selection
+function MonthNavigationWithMemberSelection({ calenderMonth, setCalenderDate, membersInMonth, selectedMember, setSelectedMember }) {
   function handleMonthIncrease() {
     setCalenderDate(curr => {
       const [year, month] = curr.split('-')
@@ -1576,6 +1579,44 @@ function MonthNavigation({ calenderMonth, setCalenderDate, membersInMonth, selec
         members={membersInMonth}
         onChangeMember={setSelectedMember}
         selectedMember={selectedMember} />
+    </div>
+  )
+}
+
+// Month Navigation
+function MonthNavigation({ calenderMonth, setCalenderDate }) {
+  function handleMonthIncrease() {
+    setCalenderDate(curr => {
+      const [year, month] = curr.split('-')
+      const newMonth = parseInt(month) > 11 ? 1 : parseInt(month) + 1
+      return `${parseInt(month) > 11 ? parseInt(year) + 1 : year}-${newMonth < 10 ? '0' + newMonth : newMonth}`
+    })
+  }
+  function handleMonthDecrease() {
+    setCalenderDate(curr => {
+      const [year, month] = curr.split('-')
+      const newMonth = parseInt(month) < 2 ? 12 : parseInt(month) - 1
+      return `${parseInt(month) < 2 ? parseInt(year) - 1 : year}-${newMonth < 10 ? '0' + newMonth : newMonth}`
+    })
+  }
+
+  function currentMonth() {
+    setCalenderDate(new Date().toISOString().slice(0, 7))
+  }
+
+  function handleMonthChange(month) {
+    month === "" ? currentMonth() : setCalenderDate(month);
+  }
+
+  return (
+    <div className="navigation">
+      <button className="button"
+        onClick={() => currentMonth()}>This Month</button>
+      <MonthPicker
+        onIncrease={handleMonthIncrease}
+        onDecrease={handleMonthDecrease}
+        calenderMonth={calenderMonth}
+        onMonthChange={handleMonthChange} />
     </div>
   )
 }

@@ -879,11 +879,88 @@ function AddOrUpdateMember({ members, setMembers, memberInfo, type, setPopUp }) 
   )
 }
 
-function MembersInMonth({ membersMonthWise, setMembersMonthWise }) {
-  const [calenderMonth, setCalenderDate] = useState(new Date().toISOString().slice(0, 7));
+function MembersShortDetails({ member, serial, onDeleteMember }) {
   return (
-    <div className="all-members">
-      <MonthNavigation calenderMonth={calenderMonth} setCalenderDate={setCalenderDate} />
+    <div key={member.id} name={member.name} className="member-details">
+      <div className="user-info">
+        <span className="user-serial" style={{ fontWeight: "bold" }}>{serial + 1 < 10 ? "0" + (serial + 1) : serial + 1}</span>
+        <span className="user-name">{member.name}</span>
+      </div>
+      <div className="user-actions">
+        {/* close button */}
+        <button value={member.id} className="button close-button" onClick={(e) => onDeleteMember(e.target.value)}>&#10006;</button>
+      </div>
+    </div>
+  )
+}
+
+function MembersInMonth({ membersMonthWise, setMembersMonthWise, members }) {
+  const [calenderMonth, setCalenderDate] = useState(new Date().toISOString().slice(0, 7));
+  const [selectedMember, setSelectedMember] = useState("selectAMember");
+
+  let membersData = membersMonthWise.find(member => member.month === calenderMonth)?.members || [];
+  membersData = membersData.map(member => {
+    return {
+      id: member,
+      name: members.find(m => m.id === member).name
+    }
+  })
+
+  let availableMembers = members.filter(member => !membersData.find(m => m.id === member.id));
+  availableMembers = [{ id: "selectAMember", name: "Select a member" }, ...availableMembers.map(member => {
+    return {
+      id: member.id,
+      name: member.name
+    }
+  })]
+
+  function handleAddMember() {
+    if (selectedMember !== "selectAMember") {
+      setMembersMonthWise(curr => {
+        const updatedMembers = curr.map(member => {
+          if (member.month === calenderMonth) {
+            return {
+              ...member,
+              members: [...member.members, Number(selectedMember)]
+            }
+          }
+          return member;
+        })
+        return updatedMembers;
+      })
+    }
+  }
+
+  function handleDeleteMember(id) {
+    setMembersMonthWise(curr => {
+      const updatedMembers = curr.map(member => {
+        if (member.month === calenderMonth) {
+          return {
+            ...member,
+            members: member.members.filter(m => m !== Number(id))
+          }
+        }
+        return member;
+      })
+      return updatedMembers;
+    })
+  }
+
+
+  return (
+    <div className="members-in-month">
+      <div className="navigation-header">
+        <MonthNavigation calenderMonth={calenderMonth} setCalenderDate={setCalenderDate} />
+        <div className="add-member">
+          <SelectMembers members={availableMembers} onChangeMember={setSelectedMember} selectedMember={selectedMember} />
+          <button className="button" onClick={handleAddMember}>&#10009; Add This Member</button>
+        </div>
+      </div>
+      <div className="user-list">
+        {membersData.map((member, key) => {
+          return <MembersShortDetails member={member} key={member.id} serial={key} onDeleteMember={handleDeleteMember} />
+        })}
+      </div>
     </div>
   )
 }
@@ -943,7 +1020,7 @@ function LabelContainer({ members, setMembers, membersMonthWise, setMembersMonth
           <Popup setShowPopup={setShowPopup} headerText={headerText} className={component === "membersInMonth" ? "popup-members-in-month" : ""}>
             {component === "allMembers" && <AllMembers members={members} setMembers={setMembers} />}
             {component === "addMembers" && <AddOrUpdateMember members={members} setMembers={setMembers} memberInfo={{}} type="add" setPopUp={setShowPopup} />}
-            {component === "membersInMonth" && <MembersInMonth membersMonthWise={membersMonthWise} setMembersMonthWise={setMembersMonthWise} />}
+            {component === "membersInMonth" && <MembersInMonth membersMonthWise={membersMonthWise} setMembersMonthWise={setMembersMonthWise} members={members} />}
             {component === "addBazar" && <AddBazar marketingHistory={marketingHistory} setMarketingHistory={setMarketingHistory} />}
             {component === "addMoney" && <AddMoney storeMoney={storeMoney} setStoreMoney={setStoreMoney} />}
           </Popup>)}
@@ -1711,6 +1788,7 @@ function DateInput({ date, onChange }) {
 
 //Select Members
 function SelectMembers({ members, onChangeMember, selectedMember }) {
+  // console.log(selectedMember, members)
   function handleMemberChange(e) {
     onChangeMember(e.target.value)
   }

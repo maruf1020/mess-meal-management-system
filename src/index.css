@@ -367,6 +367,22 @@ p.error-text {
   gap: 1rem;
 }
 
+.label-container .pop-up-header button {
+  color: var(--v-black-base);
+  font-size: 24px;
+}
+
+.label-container .pop-up-header h3 {
+  margin: unset;
+  padding: unset;
+}
+
+.label-container .pop-up-header button:hover {
+  transform: scale(1.2);
+  background: unset;
+  text-decoration: unset;
+}
+
 .pop-up,
 .pop-up-overlay {
   position: fixed;
@@ -479,20 +495,83 @@ p.error-text {
   width: 100%;
 }
 
-.label-container .pop-up-header button {
-  color: var(--v-black-base);
-  font-size: 24px;
-}
-
-.label-container .pop-up-header h3 {
-  margin: unset;
+.pop-up.popup-members-in-month .pop-up-body {
+  background: transparent;
   padding: unset;
 }
 
-.label-container .pop-up-header button:hover {
-  transform: scale(1.2);
-  background: unset;
+.members-in-month {
+  width: 550px;
+}
+
+.navigation-header {
+  background: var(--v-secondary-lighten5);
+  padding: 5px 20px;
+  border-radius: unset
+}
+
+.members-in-month button {
+  border: 1px solid var(--v-primary-base);
+  background: var(--v-white-base);
+  color: var(--v-primary-base);
+  padding: 10px 20px;
+}
+
+.members-in-month button:hover {
+  background: var(--v-primary-base);
+  color: var(--v-white-base);
   text-decoration: unset;
+}
+
+.members-in-month .date-year.picker {
+  padding-right: 0;
+}
+
+.members-in-month .add-member {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 20px 0;
+}
+
+.members-in-month input[type="month"] {
+  background: var(--v-secondary-lighten5);
+}
+
+.members-in-month .add-member>select {
+  background: var(--v-secondary-lighten5);
+  width: 50%;
+}
+
+.members-in-month .user-list {
+  background: var(--v-secondary-lighten5);
+  margin-top: 10px;
+  border-radius: 0 0 5px 5px;
+}
+
+.members-in-month .member-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 10px 20px;
+}
+
+.members-in-month .member-details:hover {
+  background: var(--v-secondary-lighten4);
+}
+
+.members-in-month .user-info {
+  display: flex;
+  gap: 20px;
+}
+
+.members-in-month .button.close-button {
+  background: unset;
+  border: unset;
+  color: var(--v-black-base);
+}
+
+.members-in-month .button.close-button:hover {
+  transform: scale(1.2);
 }
 
 button,

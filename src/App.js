@@ -618,7 +618,7 @@ function Main() {
 
   return (
     <main>
-      {(members.length > 0 && meals.length > 0 && membersInMonth.length > 0) ?
+      {(members.length > 0) ?
         <>
           <LabelContainer members={members} setMembers={setMembers} membersMonthWise={membersMonthWise} setMembersMonthWise={setMembersMonthWise} marketingHistory={marketingHistory} setMarketingHistory={setMarketingHistory} storeMoney={storeMoney} setStoreMoney={setStoreMoney} />
           <MealCalender meals={meals} members={members} />
@@ -917,7 +917,7 @@ function MembersInMonth({ membersMonthWise, setMembersMonthWise, members }) {
   function handleAddMember() {
     if (selectedMember !== "selectAMember") {
       setMembersMonthWise(curr => {
-        const updatedMembers = curr.map(member => {
+        let updatedMembers = curr.map(member => {
           if (member.month === calenderMonth) {
             return {
               ...member,
@@ -926,6 +926,12 @@ function MembersInMonth({ membersMonthWise, setMembersMonthWise, members }) {
           }
           return member;
         })
+        if (!updatedMembers.find(member => member.month === calenderMonth)) {
+          updatedMembers = [...updatedMembers, {
+            month: calenderMonth,
+            members: [Number(selectedMember)]
+          }]
+        }
         return updatedMembers;
       })
     }
@@ -1352,7 +1358,7 @@ function MealAssign({ meals, setMeals, members, date, setDate, membersInMonth })
       <h3>Assign Meals</h3>
       <DateNavigation date={date} setDate={setDate} />
 
-      {membersInMonth.length <= 0 ? <p className="no-data-found">No assign Member Member Available</p> :
+      {membersInMonth.length <= 0 ? <p className="no-data-found">No assign Member Available for this Month</p> :
         (<>
           <table>
             <tbody>

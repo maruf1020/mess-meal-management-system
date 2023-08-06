@@ -498,6 +498,7 @@ p.error-text {
 .pop-up.popup-members-in-month .pop-up-body {
   background: transparent;
   padding: unset;
+  margin-right: -7px;
 }
 
 .members-in-month {

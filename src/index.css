@@ -575,6 +575,54 @@ p.error-text {
   transform: scale(1.2);
 }
 
+.add-bazar {
+  width: 350px;
+}
+
+.add-bazar input#isOwnPay {
+  margin: 0;
+  background: white;
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+  max-width: 25px;
+  max-height: 25px;
+  padding: unset;
+}
+
+.add-bazar button {
+  background: var(--v-primary-base);
+  color: var(--v-white-base);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+.add-bazar .custom-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 0 0 0;
+}
+
+.add-money {
+  width: 350px;
+}
+
+.add-money button {
+  background: var(--v-primary-base);
+  color: var(--v-white-base);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+
 button,
 a {
   align-items: center;

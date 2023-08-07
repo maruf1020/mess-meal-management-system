@@ -597,10 +597,11 @@ function Header() {
 function Main() {
   const [meals, setMeals] = useState([]); //meals data
   const [members, setMembers] = useState([]); //members data
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10)); //current date
   const [storeMoney, setStoreMoney] = useState([]); //store money data
   const [marketingHistory, setMarketingHistory] = useState([]); //marketing history data
   const [membersMonthWise, setMembersMonthWise] = useState([]); //members data array month wise
+
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10)); //current date
   const [membersInMonth, setMembersInMonth] = useState([]); //members data for a specific month
 
   useEffect(() => {
@@ -971,15 +972,205 @@ function MembersInMonth({ membersMonthWise, setMembersMonthWise, members }) {
   )
 }
 
-function AddBazar({ marketingHistory, setMarketingHistory }) {
+function AddBazar({ marketingHistory, setMarketingHistory, members, membersMonthWise }) {
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+  const [selectedMember, setSelectedMember] = useState({ id: "selectAMember", name: "Select a member" });
+  const [isOwnPay, setIsOwnPay] = useState(false);
+  const [selectElementsMembers, setSelectElementsMembers] = useState([])
+
+  const [dateError, setDateError] = useState(false);
+  const [dateErrorText, setDateErrorText] = useState("");
+
+  const [amountError, setAmountError] = useState(false);
+  const [amountErrorText, setAmountErrorText] = useState("");
+
+  const [descriptionError, setDescriptionError] = useState(false);
+  const [descriptionErrorText, setDescriptionErrorText] = useState("");
+
+  const [selectedMemberError, setSelectedMemberError] = useState(false);
+  const [selectedMemberErrorText, setSelectedMemberErrorText] = useState("");
+
+  useEffect(() => {
+    const month = date.slice(0, 7);
+    let membersInMonthData = membersMonthWise.find(member => member.month === month)?.members || [];
+    membersInMonthData = membersInMonthData.map(member => {
+      return {
+        id: member,
+        name: members.find(m => m.id === member).name
+      }
+    });
+    membersInMonthData = [{ id: "selectAMember", name: "Select a member" }, ...membersInMonthData];
+    setSelectElementsMembers(membersInMonthData)
+
+  }, [date, members, membersMonthWise])
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (date === "") {
+      setDateError(true);
+      setDateErrorText("Date is required");
+    } else {
+      setDateError(false);
+      setDateErrorText("");
+    }
+    if (amount === "") {
+      setAmountError(true);
+      setAmountErrorText("Amount is required");
+    } else {
+      setAmountError(false);
+      setAmountErrorText("");
+    }
+    if (description === "") {
+      setDescriptionError(true);
+      setDescriptionErrorText("Description is required");
+    } else {
+      setDescriptionError(false);
+      setDescriptionErrorText("");
+    }
+    console.log(selectedMember)
+    if (selectedMember.id === "selectAMember") {
+      setSelectedMemberError(true);
+      setSelectedMemberErrorText("Select a member");
+    } else {
+      setSelectedMemberError(false);
+      setSelectedMemberErrorText("");
+    }
+
+    if (date !== "" && amount !== "" && description !== "") {
+      setMarketingHistory(curr => {
+        const updatedHistory = [...curr, {
+          id: Number(curr.length + 1),
+          date,
+          amount,
+          description
+        }]
+        return updatedHistory;
+      })
+      setDate("");
+      setAmount("");
+      setDescription("");
+    }
+  }
+
   return (
-    <div className="all-members">Add Bazar</div>
+    <div className="add-bazar">
+      <form>
+        <FromGroup label="Date" type="date" name="date" id="date" placeholder="Date" value={date} setValue={setDate} error={dateError} errorText={dateErrorText} />
+        {selectElementsMembers.length > 1 ?
+          <>
+            <div className="form-group">
+              <label htmlFor="member">Member</label>
+              <SelectMembers members={selectElementsMembers} onChangeMember={setSelectedMember} selectedMember={selectedMember} />
+              {selectedMemberError && <p class="error-text">{selectedMemberErrorText}</p>}
+            </div>
+            <FromGroup label="Amount" type="number" name="amount" id="amount" placeholder="Amount" value={amount} setValue={setAmount} error={amountError} errorText={amountErrorText} />
+            <FromGroup label="Description" type="text" name="description" id="description" placeholder="Description" value={description} setValue={setDescription} error={descriptionError} errorText={descriptionErrorText} />
+            <div className="form-group custom-checkbox">
+              <input type="checkbox" name="isOwnPay" id="isOwnPay" checked={isOwnPay} onChange={e => setIsOwnPay(e.target.checked)} />
+              <label htmlFor="isOwnPay">Is Own Pay</label>
+            </div>
+            <button type="submit" value="Submit" className="button" onClick={handleSubmit}>{"Add Bazar"}</button>
+          </>
+          : <div className="no-data-found no-member">No member available for this month. Please Select a date where members are available</div>
+        }
+      </form>
+    </div>
   )
 }
 
-function AddMoney({ storeMoney, setStoreMoney }) {
+function AddMoney({ storeMoney, setStoreMoney, members, membersMonthWise }) {
+
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [amount, setAmount] = useState("");
+  const [selectedMember, setSelectedMember] = useState({ id: "selectAMember", name: "Select a member" });
+  const [selectElementsMembers, setSelectElementsMembers] = useState([])
+
+  const [dateError, setDateError] = useState(false);
+  const [dateErrorText, setDateErrorText] = useState("");
+
+  const [amountError, setAmountError] = useState(false);
+  const [amountErrorText, setAmountErrorText] = useState("");
+
+  const [selectedMemberError, setSelectedMemberError] = useState(false);
+  const [selectedMemberErrorText, setSelectedMemberErrorText] = useState("");
+
+  useEffect(() => {
+    const month = date.slice(0, 7);
+    let membersInMonthData = membersMonthWise.find(member => member.month === month)?.members || [];
+    membersInMonthData = membersInMonthData.map(member => {
+      return {
+        id: member,
+        name: members.find(m => m.id === member).name
+      }
+    });
+    membersInMonthData = [{ id: "selectAMember", name: "Select a member" }, ...membersInMonthData];
+    setSelectElementsMembers(membersInMonthData)
+  }, [date, members, membersMonthWise])
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (date === "") {
+      setDateError(true);
+      setDateErrorText("Date is required");
+    } else {
+      setDateError(false);
+      setDateErrorText("");
+    }
+    if (amount === "") {
+      setAmountError(true);
+      setAmountErrorText("Amount is required");
+    } else {
+      setAmountError(false);
+      setAmountErrorText("");
+    }
+    console.log(selectedMember)
+    if (selectedMember === "selectAMember" || selectedMember === "" || selectedMember === null || selectedMember === undefined) {
+      setSelectedMemberError(true);
+      setSelectedMemberErrorText("Select a member");
+    } else {
+      setSelectedMemberError(false);
+      setSelectedMemberErrorText("");
+    }
+
+    if (date !== "" && amount !== "" && selectedMember.id !== "selectAMember") {
+      setStoreMoney(curr => {
+        const updatedStoreMoney = [...curr, {
+          id: Number(curr.length + 1),
+          date,
+          amount,
+          memberId: selectedMember.id
+        }]
+        return updatedStoreMoney;
+      })
+      setDate(new Date().toISOString().slice(0, 10));
+      setAmount("");
+      setSelectedMember({ id: "selectAMember", name: "Select a member" });
+    }
+
+  }
+
+
   return (
-    <div className="all-members">Add Money</div>
+    <div className="add-money">
+      <form>
+        <FromGroup label="Date" type="date" name="date" id="date" placeholder="Date" value={date} setValue={setDate} error={dateError} errorText={dateErrorText} />
+        {selectElementsMembers.length > 1 ?
+          <>
+            <div className="form-group">
+              <label htmlFor="member">Member</label>
+              <SelectMembers members={selectElementsMembers} onChangeMember={setSelectedMember} selectedMember={selectedMember} />
+              {selectedMemberError && <p class="error-text">{selectedMemberErrorText}</p>}
+            </div>
+            <FromGroup label="Amount" type="number" name="amount" id="amount" placeholder="Amount" value={amount} setValue={setAmount} error={amountError} errorText={amountErrorText} />
+            <button type="submit" value="Submit" className="button" onClick={handleSubmit}>{"Add Money"}</button>
+          </>
+          : <div className="no-data-found no-member">No member available for this month. Please Select a date where members are available</div>
+        }
+      </form>
+    </div>
   )
 }
 
@@ -1027,8 +1218,8 @@ function LabelContainer({ members, setMembers, membersMonthWise, setMembersMonth
             {component === "allMembers" && <AllMembers members={members} setMembers={setMembers} />}
             {component === "addMembers" && <AddOrUpdateMember members={members} setMembers={setMembers} memberInfo={{}} type="add" setPopUp={setShowPopup} />}
             {component === "membersInMonth" && <MembersInMonth membersMonthWise={membersMonthWise} setMembersMonthWise={setMembersMonthWise} members={members} />}
-            {component === "addBazar" && <AddBazar marketingHistory={marketingHistory} setMarketingHistory={setMarketingHistory} />}
-            {component === "addMoney" && <AddMoney storeMoney={storeMoney} setStoreMoney={setStoreMoney} />}
+            {component === "addBazar" && <AddBazar marketingHistory={marketingHistory} setMarketingHistory={setMarketingHistory} members={members} membersMonthWise={membersMonthWise} />}
+            {component === "addMoney" && <AddMoney storeMoney={storeMoney} setStoreMoney={setStoreMoney} members={members} membersMonthWise={membersMonthWise} />}
           </Popup>)}
       </div>
     </>

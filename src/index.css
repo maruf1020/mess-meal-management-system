@@ -238,6 +238,12 @@ main>.main-loading {
   margin: 0 auto
 }
 
+.marketing-history .header,
+.money-store.box .header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .assign-meals.box {
   border: 1px solid var(--v-primary-base);
 }

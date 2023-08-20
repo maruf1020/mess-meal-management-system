@@ -88,7 +88,7 @@ const marketingData = [
     id: 202,
     date: "2023-08-02",
     userId: 102,
-    cost: 1000,
+    cost: 1001,
     description: "Bazar for 2nd September",
     isOwnPay: false,
   },
@@ -109,44 +109,12 @@ const marketingData = [
     isOwnPay: false,
   },
   {
-    id: 205,
-    date: "2023-08-05",
-    userId: 105,
-    cost: 1000,
-    description: "Bazar for 5th September",
-    isOwnPay: true,
-  },
-  {
-    id: 206,
-    date: "2023-08-06",
-    userId: 106,
-    cost: 1000,
-    description: "Bazar for 6th September",
-    isOwnPay: false,
-  },
-  {
-    id: 207,
-    date: "2023-08-07",
-    userId: 107,
-    cost: 1000,
-    description: "Bazar for 7th September",
-    isOwnPay: true,
-  },
-  {
-    id: 208,
-    date: "2023-08-08",
-    userId: 108,
-    cost: 1000,
-    description: "Bazar for 8th September",
-    isOwnPay: false,
-  },
-  {
     id: 209,
     date: "2023-08-09",
     userId: 101,
-    cost: 1000,
+    cost: 1500,
     description: "Bazar for 9th September",
-    isOwnPay: true,
+    isOwnPay: false,
   },
   {
     id: 210,
@@ -171,30 +139,6 @@ const marketingData = [
     cost: 1000,
     description: "Bazar for 12th September",
     isOwnPay: false,
-  },
-  {
-    id: 213,
-    date: "2023-08-13",
-    userId: 105,
-    cost: 1000,
-    description: "Bazar for 13th September",
-    isOwnPay: true,
-  },
-  {
-    id: 214,
-    date: "2023-08-14",
-    userId: 106,
-    cost: 1000,
-    description: "Bazar for 14th September",
-    isOwnPay: false,
-  },
-  {
-    id: 215,
-    date: "2023-08-15",
-    userId: 107,
-    cost: 1000,
-    description: "Bazar for 15th September",
-    isOwnPay: true,
   },
 ];
 
@@ -558,31 +502,37 @@ const membersMonthWiseData = [
 const storeMoneyData = [
   {
     id: "2023-08-01",
-    userId: 101,
-    amount: 1000,
-    date: "2023-08-01",
-  },
-  {
-    id: "2023-08-01",
-    userId: 101,
-    amount: 1000,
-    date: "2023-08-01",
-  },
-  {
-    id: "2023-08-01",
-    userId: 101,
-    amount: 1000,
+    userId: 102,
+    amount: 2000,
     date: "2023-08-01",
   },
   {
     id: "2023-08-01",
     userId: 102,
-    amount: 1000,
+    amount: 3000,
+    date: "2023-08-01",
+  },
+  {
+    id: "2023-08-01",
+    userId: 104,
+    amount: 2000,
+    date: "2023-08-01",
+  },
+  {
+    id: "2023-08-01",
+    userId: 102,
+    amount: 2000,
     date: "2023-08-01",
   },
   {
     id: "2023-08-01",
     userId: 103,
+    amount: 1000,
+    date: "2023-08-01",
+  },
+  {
+    id: "2023-08-01",
+    userId: 108,
     amount: 1000,
     date: "2023-08-01",
   },
@@ -643,10 +593,10 @@ function Main() {
           <LabelContainer members={members} setMembers={setMembers} membersMonthWise={membersMonthWise} setMembersMonthWise={setMembersMonthWise} marketingHistory={marketingHistory} setMarketingHistory={setMarketingHistory} storeMoney={storeMoney} setStoreMoney={setStoreMoney} />
           <MealCalender meals={meals} members={members} calenderMonth={calenderMonth} setCalenderDate={setCalenderDate} />
           <MealAssign setMeals={setMeals} meals={meals} members={members} date={date} setDate={setDate} membersInMonth={membersInMonth} />
-          <ShortSummary />
+          <ShortSummary marketingHistory={marketingHistory} members={members} calenderMonth={calenderMonth} membersInMonth={membersInMonthV2} storeMoney={storeMoney} meals={meals} />
           <MarketingHistory marketingHistory={marketingHistory} members={members} calenderMonth={calenderMonth} membersInMonth={membersInMonthV2} />
           <StoreMoneyHistory storeMoney={storeMoney} members={members} calenderMonth={calenderMonth} membersInMonth={membersInMonthV2} />
-          <FinalSummary />
+          <FinalSummary marketingHistory={marketingHistory} members={members} calenderMonth={calenderMonth} membersInMonth={membersInMonthV2} storeMoney={storeMoney} meals={meals} />
         </>
         : <p className="main-loading">Loading...</p>
       }
@@ -1063,7 +1013,8 @@ function AddBazar({ marketingHistory, setMarketingHistory, members, membersMonth
           date,
           userId: Number(selectedMember),
           cost: Number(cost),
-          description
+          description,
+          isOwnPay
         }]
         return updatedHistory;
       })
@@ -1145,7 +1096,6 @@ function AddMoney({ storeMoney, setStoreMoney, members, membersMonthWise }) {
       setAmountError(false);
       setAmountErrorText("");
     }
-    console.log(selectedMember)
     if (selectedMember === "selectAMember" || selectedMember === "" || selectedMember === null || selectedMember === undefined) {
       setSelectedMemberError(true);
       setSelectedMemberErrorText("Select a member");
@@ -1156,7 +1106,6 @@ function AddMoney({ storeMoney, setStoreMoney, members, membersMonthWise }) {
 
     if (date !== "" && amount !== "" && selectedMember.id !== "selectAMember") {
       setStoreMoney(curr => {
-        console.log(selectedMember)
         const updatedStoreMoney = [...curr, {
           id: date,
           userId: Number(selectedMember),
@@ -1695,34 +1644,79 @@ function MealAssign({ meals, setMeals, members, date, setDate, membersInMonth })
   )
 }
 
-function ShortSummary() {
+function ShortSummary({ marketingHistory, members, calenderMonth, membersInMonth, storeMoney, meals }) {
+
+  const displayDate = new Date(calenderMonth).toLocaleString('default', { month: 'long' }) + " " + new Date(calenderMonth).getFullYear();
+
+  const currMarketing = [...marketingHistory].filter(m => m.date.includes(calenderMonth));
+  const totalMarketing = currMarketing.reduce((acc, cur) => {
+    if (membersInMonth.includes(cur.userId)) {
+      return acc + Number(cur.cost);
+    } else {
+      return acc;
+    }
+  }, 0);
+
+  const currStoreMoney = [...storeMoney].filter(m => m.date.includes(calenderMonth));
+  const totalStoreMoney = currStoreMoney.reduce((acc, cur) => {
+    if (membersInMonth.includes(cur.userId)) {
+      return acc + Number(cur.amount);
+    } else {
+      return acc;
+    }
+  }, 0);
+
+  const currMeals = [...meals].filter(m => m.date.includes(calenderMonth));
+  const totalMeals = currMeals.reduce((acc, cur) => {
+    return acc + cur.meals.reduce((acc1, cur1) => {
+      if (membersInMonth.includes(cur1.userId)) {
+        return acc1 + cur1.details.reduce((acc2, cur2) => {
+          return acc2 + (cur2.breakfast ? Number(cur2.breakfast) : 0) + (cur2.lunch ? Number(cur2.lunch) : 0) + (cur2.dinner ? Number(cur2.dinner) : 0)
+        }, 0)
+      } else {
+        return acc1;
+      }
+    }, 0)
+  }, 0);
+
+  const totalMealRate = totalMarketing / totalMeals;
+
+  const moneyLeft = totalStoreMoney - totalMarketing;
+
+
   return (
     <div className="short-summary box">
-      <h3>Short Summary</h3>
-      <table>
+      <div className="header">
+        <h3>Short Summary</h3>
+        {/* //color orange */}
+        <h4 style={{ color: "#71788a;" }}>{displayDate}</h4>
+      </div>
+      {totalMarketing !== 0 && totalStoreMoney !== 0 && totalMeals !== 0 ? (<table>
         <tbody>
           <tr>
             <td>Total Market</td>
-            <td>1000</td>
+            <td>{totalMarketing}</td>
           </tr>
           <tr>
             <td>Total Money</td>
-            <td>1000</td>
+            <td>{totalStoreMoney}</td>
           </tr>
           <tr>
             <td>Total Meal</td>
-            <td>1000</td>
+            <td>{totalMeals}</td>
           </tr>
           <tr>
             <td>Meal Rate</td>
-            <td>1000</td>
+            <td>{totalMealRate.toFixed(2)}</td>
           </tr>
           <tr>
             <td>Money Left</td>
-            <td>1000</td>
+            {
+              moneyLeft > 0 ? <td style={{ color: "green" }}>{moneyLeft}</td> : <td style={{ color: "red" }}>{moneyLeft}</td>
+            }
           </tr>
         </tbody>
-      </table>
+      </table>) : <p className="no-data-found">No data found in this month</p>}
     </div>
   )
 }
@@ -1753,6 +1747,29 @@ function MarketingHistory({ marketingHistory, members, calenderMonth, membersInM
             return acc1;
           }
         }, 0),
+        totalBazarByOwn: tempHistory.reduce((acc1, cur1) => {
+          if (cur1.userId === member.userId && cur1.isOwnPay) {
+            return acc1 + 1;
+          } else {
+            return acc1;
+          }
+        }, 0),
+        totalBazarByStore: tempHistory.reduce((acc1, cur1) => {
+          if (cur1.userId === member.userId && !cur1.isOwnPay) {
+            return acc1 + 1;
+          } else {
+            return acc1;
+          }
+        }, 0),
+      })
+    } else {
+      acc.push({
+        id: cur,
+        name: members.find(m => m.id === cur).name,
+        bazar: 0,
+        totalBazar: 0,
+        totalBazarByOwn: 0,
+        totalBazarByStore: 0,
       })
     }
     return acc;
@@ -1765,11 +1782,11 @@ function MarketingHistory({ marketingHistory, members, calenderMonth, membersInM
         {/* //color orange */}
         <h4 style={{ color: "#71788a;" }}>{displayDate}</h4>
       </div>
-      <table>
-        {marketingHistoryInMonth.length <= 0 ? <p className="no-data-found">No marketing history found in this month</p> : (<tbody>
+      {marketingHistoryInMonth.length <= 0 ? <p className="no-data-found">No marketing history found in this month</p> : (<table>
+        <tbody>
           <tr>
             <th>Name</th>
-            <th>Bazar</th>
+            <th>Marketing</th>
             <th>Money</th>
           </tr>
           {
@@ -1777,15 +1794,15 @@ function MarketingHistory({ marketingHistory, members, calenderMonth, membersInM
               return (
                 <tr key={member.id}>
                   <td>{member.name}</td>
-                  <td>{member.totalBazar}</td>
+                  <td>{member.totalBazar}<span style={{ color: "green" }} className="bazar-by-own"> ( {member.totalBazarByOwn} , </span><span style={{ color: "red" }} className="bazar-by-store">{member.totalBazarByStore} )</span></td>
                   <td>{member.bazar}</td>
                 </tr>
               )
             })
           }
-        </tbody>)
-        }
-      </table>
+        </tbody>
+      </table>)
+      }
     </div>
   )
 }
@@ -1799,7 +1816,6 @@ function StoreMoneyHistory({ storeMoney, members, calenderMonth, membersInMonth 
   const moneyHistoryMonthWise = membersInMonth.reduce((acc, cur) => {
 
     const member = tempHistory.find(m => {
-      console.log(m.userId, cur)
       return m.userId === cur
     });
 
@@ -1822,6 +1838,13 @@ function StoreMoneyHistory({ storeMoney, members, calenderMonth, membersInMonth 
           }
         }, 0),
       })
+    } else {
+      acc.push({
+        id: cur,
+        name: members.find(m => m.id === cur).name,
+        amount: 0,
+        totalMoneyStore: 0,
+      })
     }
     return acc;
   }, []);
@@ -1833,9 +1856,9 @@ function StoreMoneyHistory({ storeMoney, members, calenderMonth, membersInMonth 
         <h3>Money Store History</h3>
         <h4 style={{ color: "#71788a;" }}>{displayDate}</h4>
       </div>
-      <table>
-        {moneyHistoryMonthWise.length <= 0 ? <p className="no-data-found">No marketing history found in this month</p> :
-          (<tbody>
+      {moneyHistoryMonthWise.length <= 0 ? <p className="no-data-found">No Money Storing history found in this month</p> :
+        (<table>
+          <tbody>
             <tr>
               <th>Name</th>
               <th>Store In Total</th>
@@ -1852,19 +1875,114 @@ function StoreMoneyHistory({ storeMoney, members, calenderMonth, membersInMonth 
                 )
               })
             }
-          </tbody>)
-        }
-      </table>
+          </tbody>
+        </table>)
+      }
+
     </div>
   )
 
 }
 
-function FinalSummary() {
+function FinalSummary({ marketingHistory, members, calenderMonth, membersInMonth, storeMoney, meals }) {
+
+  const displayDate = new Date(calenderMonth).toLocaleString('default', { month: 'long' }) + " " + new Date(calenderMonth).getFullYear();
+
+  const userData = membersInMonth.reduce((acc, cur) => {
+    //a single user total marketing cost, total store money, total meal count (it will count user meal with user's guest meal), meal rate (this will be same for all user), total meal cost
+
+    //For Every User
+    const currMarketing = [...marketingHistory].filter(m => m.date.includes(calenderMonth));
+    const totalMarketing = currMarketing.reduce((acc, cur) => {
+      if (membersInMonth.includes(cur.userId)) {
+        return acc + Number(cur.cost);
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    const currStoreMoney = [...storeMoney].filter(m => m.date.includes(calenderMonth));
+    const totalStoreMoney = currStoreMoney.reduce((acc, cur) => {
+      if (membersInMonth.includes(cur.userId)) {
+        return acc + Number(cur.amount);
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    const currMeals = [...meals].filter(m => m.date.includes(calenderMonth));
+    const totalMeals = currMeals.reduce((acc, cur) => {
+      return acc + cur.meals.reduce((acc1, cur1) => {
+        if (membersInMonth.includes(cur1.userId)) {
+          return acc1 + cur1.details.reduce((acc2, cur2) => {
+            return acc2 + (cur2.breakfast ? Number(cur2.breakfast) : 0) + (cur2.lunch ? Number(cur2.lunch) : 0) + (cur2.dinner ? Number(cur2.dinner) : 0)
+          }, 0)
+        } else {
+          return acc1;
+        }
+      }, 0)
+    }, 0);
+
+    const totalMealRate = totalMarketing / totalMeals;
+
+    const moneyLeft = totalStoreMoney - totalMarketing;
+
+    //for a single user
+    const userMarketing = [...marketingHistory].filter(m => m.userId === cur && m.date.includes(calenderMonth)).reduce((acc1, cur1) => {
+      return acc1 + Number(cur1.cost);
+    }, 0);
+
+    const userMarketingByOwn = [...marketingHistory].filter(m => m.userId === cur && m.date.includes(calenderMonth) && m.isOwnPay).reduce((acc1, cur1) => {
+      return acc1 + Number(cur1.cost);
+    }, 0);
+
+    const userMarketingByStore = [...marketingHistory].filter(m => m.userId === cur && m.date.includes(calenderMonth) && !m.isOwnPay).reduce((acc1, cur1) => {
+      return acc1 + Number(cur1.cost);
+    }, 0);
+
+    const userStoreMoney = [...storeMoney].filter(m => m.userId === cur && m.date.includes(calenderMonth)).reduce((acc1, cur1) => {
+      return acc1 + Number(cur1.amount);
+    }, 0);
+
+    const userMeals = [...meals].filter(m => m.date.includes(calenderMonth)).reduce((acc1, cur1) => {
+      return acc1 + cur1.meals.reduce((acc2, cur2) => {
+        if (cur2.userId === cur) {
+          return acc2 + cur2.details.reduce((acc3, cur3) => {
+            return acc3 + (cur3.breakfast ? Number(cur3.breakfast) : 0) + (cur3.lunch ? Number(cur3.lunch) : 0) + (cur3.dinner ? Number(cur3.dinner) : 0)
+          }, 0)
+        } else {
+          return acc2;
+        }
+      }, 0)
+    }, 0);
+    const userMealRate = userMarketing / userMeals;
+    const userTotalMealCost = userMeals * totalMealRate;
+    const summary = userMarketingByOwn + userStoreMoney - userTotalMealCost;
+
+    acc.push({
+      id: cur,
+      name: members.find(m => m.id === cur).name,
+      marketing: userMarketing,
+      marketingByOwn: userMarketingByOwn,
+      marketingByStore: userMarketingByStore,
+      storeMoney: userStoreMoney,
+      mealCount: userMeals,
+      mealCost: totalMealRate.toFixed(2),
+      totalMealCost: userTotalMealCost.toFixed(2),
+      summary: summary.toFixed(2),
+    })
+
+    return acc;
+
+  }, []);
+
   return (
     <div className="final-summary box">
-      <h3>Final Summary</h3>
-      <table>
+      <div className="header">
+        <h3>Final Summary</h3>
+        <h4 style={{ color: "#71788a;" }}>{displayDate}</h4>
+      </div>
+      {userData.length > 0 ? (<table>
         <tbody>
           <tr>
             <th>Name</th>
@@ -1872,34 +1990,26 @@ function FinalSummary() {
             <th>Store Money</th>
             <th>Meal Count</th>
             <th>Meal Cost</th>
-            <th>Total</th>
+            <th>Total Meal Cost</th>
+            <th>Summary</th>
           </tr>
-          <tr>
-            <td>Maruf</td>
-            <td>2500</td>
-            <td>2500</td>
-            <td>25</td>
-            <td>2500</td>
-            <td>2500</td>
-          </tr>
-          <tr>
-            <td>Miraz</td>
-            <td>3500</td>
-            <td>3500</td>
-            <td>35</td>
-            <td>3500</td>
-            <td>3500</td>
-          </tr>
-          <tr>
-            <td>Saif</td>
-            <td>5500</td>
-            <td>3500</td>
-            <td>35</td>
-            <td>3500</td>
-            <td>3500</td>
-          </tr>
+          {
+            userData.map(user => {
+              return (
+                <tr key={user.id}>
+                  <td>{user.name}</td>
+                  <td>{user.marketing} <span style={{ color: "green" }} className="bazar-by-own"> ( {user.marketingByOwn} , </span><span style={{ color: "red" }} className="bazar-by-store">{user.marketingByStore} )</span></td>
+                  <td>{user.storeMoney}</td>
+                  <td>{user.mealCount}</td>
+                  <td>{user.mealCost}</td>
+                  <td>{user.totalMealCost}</td>
+                  {user.summary > 0 ? <td style={{ color: "green" }}>{user.name} will get {user.summary}</td> : <td style={{ color: "red" }}>{user.name} will give {user.summary}</td>}
+                </tr>
+              )
+            })
+          }
         </tbody>
-      </table>
+      </table>) : <p className="no-data-found">No data found in this month</p>}
     </div>
   )
 }
@@ -2075,7 +2185,6 @@ function DateInput({ date, onChange }) {
 
 //Select Members
 function SelectMembers({ members, onChangeMember, selectedMember }) {
-  // console.log(selectedMember, members)
   function handleMemberChange(e) {
     onChangeMember(e.target.value)
   }

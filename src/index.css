@@ -238,6 +238,8 @@ main>.main-loading {
   margin: 0 auto
 }
 
+.final-summary .header,
+.short-summary .header,
 .marketing-history .header,
 .money-store.box .header {
   display: flex;
